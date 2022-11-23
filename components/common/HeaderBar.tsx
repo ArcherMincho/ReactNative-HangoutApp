@@ -17,15 +17,26 @@ export default HeaderBar;
 
 const styles = StyleSheet.create({
     container: {
+        width: '100%',
+        paddingVertical: '2%',
         flexDirection: 'row',
-        alignItems: 'center',
         justifyContent: 'space-between',
-        borderBottomWidth: 3,
-        borderBottomColor: 'gray',
+        alignItems: 'center',
+
+
+        // for IOS
+        shadowColor: '#555',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: .3,
+        shadowRadius: 1.5,
+        // for Android
+        elevation: 1.5,
     },
     left: {
+        marginLeft: '5%',
 
     },
     right: {
+        marginRight: '5%',
     }
 })
