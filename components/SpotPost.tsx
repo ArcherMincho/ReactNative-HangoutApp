@@ -1,6 +1,6 @@
 import { StyleSheet, ScrollView, View, Text, Image, Alert, Pressable } from 'react-native';
 
-const PostComment = props => {
+const SpotPost = props => {
     return (
         <View style={styles.container}>
             <View style={styles.img}></View>
@@ -19,7 +19,7 @@ const PostComment = props => {
     )
 }
 
-export default PostComment;
+export default SpotPost;
 
 const styles = StyleSheet.create({
     container: {

@@ -5,7 +5,7 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import HeaderBar from '../components/common/HeaderBar';
 import FilterBar from '../components/FilterBar';
 import Dropdown from '../components/common/Dropdown';
-import PostItem from '../components/PostItem';
+import SpotItem from '../components/SpotItem';
 
 const locationData = [
     { key: 'Sweden', value: 'Sweden', disabled: true },
@@ -35,6 +35,7 @@ const HomeScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
+
             <HeaderBar
                 left={
                     <Dropdown
@@ -44,11 +45,12 @@ const HomeScreen = ({ navigation }) => {
                         defaultOption={locationData[1]}
                     />}
                 right={
-                    <Pressable onPress={() => navigation.navigate('Post')}>
+                    <Pressable onPress={() => navigation.navigate('Spot')}>
                         <FontAwesome name="comment-o" size={25} color={'black'} />
                     </Pressable>
                 }
             />
+
             <FilterBar
                 friendData={friendData}
                 setFriends={setFriends}
@@ -56,16 +58,17 @@ const HomeScreen = ({ navigation }) => {
                 setFilters={setFilters}
                 defaultFilters={filters}
             />
+
             <ScrollView style={styles.postContainer}>
-                <PostItem />
-                <PostItem />
-                <PostItem />
-                <PostItem />
-                <PostItem />
-                <PostItem />
-                <PostItem />
-                <PostItem />
-                <PostItem />
+                <SpotItem />
+                <SpotItem />
+                <SpotItem />
+                <SpotItem />
+                <SpotItem />
+                <SpotItem />
+                <SpotItem />
+                <SpotItem />
+                <SpotItem />
             </ScrollView>
         </View>
     );

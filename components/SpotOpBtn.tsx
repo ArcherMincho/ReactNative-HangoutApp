@@ -1,13 +1,13 @@
 import { StyleSheet, View, Text, Image, Alert, Pressable } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
-const PostOpBtn = () => {
+const SpotOpBtn = props => {
     return (
         <View style={styles.container}>
             <Pressable style={styles.starBtn}>
                 <FontAwesome name="star" size={25} color={'gray'} />
             </Pressable>
-            <Pressable style={styles.addBtn}>
+            <Pressable style={styles.addBtn} onPress={props.onAdd}>
                 <FontAwesome name="plus" size={25} color={'gray'} />
             </Pressable>
             <Pressable style={styles.shareBtn}>
@@ -18,7 +18,7 @@ const PostOpBtn = () => {
     )
 }
 
-export default PostOpBtn;
+export default SpotOpBtn;
 
 const styles = StyleSheet.create({
     container: {

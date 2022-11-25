@@ -1,6 +1,6 @@
 import { StyleSheet, ScrollView, TouchableOpacity, View, Text, Image, Alert, Pressable } from 'react-native';
 
-const PostItem = props => {
+const SpotItem = props => {
     return (
         <View style={[styles.container, props.myStyle]}>
             <View style={styles.imgContainer}></View>
@@ -24,7 +24,7 @@ const PostItem = props => {
     )
 }
 
-export default PostItem;
+export default SpotItem;
 
 const styles = StyleSheet.create({
     container: {
