@@ -1,10 +1,11 @@
 import { StyleSheet, ScrollView, TouchableOpacity, View, Text, Image, Alert, Pressable } from 'react-native';
-
+import { useState, useEffect } from 'react';
 
 import HeaderBar from '../components/common/HeaderBar';
 import BackBtn from '../components/common/BackBtn';
 import SelectSpot from '../components/SelectSpot';
 import StarRating from '../components/StarRating';
+import CommentBox from '../components/CommentBox';
 
 
 let SpotData = [
@@ -14,9 +15,10 @@ let SpotData = [
 ]
 
 const PostScreen = ({ navigation }) => {
+    const [text, onChangeText] = useState('place holder..');
+
     return (
         <View style={styles.container}>
-
             <HeaderBar
                 left={
                     <BackBtn onPress={() => navigation.navigate("Spot")} />}
@@ -30,6 +32,11 @@ const PostScreen = ({ navigation }) => {
             <SelectSpot data={SpotData} />
 
             <StarRating />
+
+            <CommentBox
+                onChangeText={text => onChangeText(text)}
+                value={text}
+            />
 
 
         </View>
