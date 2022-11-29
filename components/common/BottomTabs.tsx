@@ -14,10 +14,10 @@ import SpotScreen from '../../screens/SpotScreen';
 
 const Tab = createBottomTabNavigator();
 
-const BotmTabs = () => {
+const BottomTabs = props => {
     return (
         <Tab.Navigator
-            initialRouteName='Post'
+            initialRouteName='Home'
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
@@ -42,11 +42,13 @@ const BotmTabs = () => {
                 tabBarInactiveTintColor: 'gray',
             })}
         >
-            <Tab.Screen name="Home" component={HomeScreen} />
-            <Tab.Screen name="Spot" component={SpotScreen} />
-            <Tab.Screen name="Post" component={PostScreen} />
+            {props.screens.map(i => {
+                return (
+                    < Tab.Screen key={i.name} name={i.name} component={i.component} />
+                )
+            })}
         </Tab.Navigator>
     );
 }
 
-export default BotmTabs;
+export default BottomTabs;

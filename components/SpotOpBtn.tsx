@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignContent: 'center',
         justifyContent: 'center',
+        margin: 10,
     },
     starBtn: {
         marginRight: 10,

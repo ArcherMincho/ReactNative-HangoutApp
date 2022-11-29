@@ -1,5 +1,5 @@
 import { StyleSheet, ScrollView, TouchableOpacity, View, Text, Image, Alert, Pressable } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 import HeaderBar from '../components/common/HeaderBar';
@@ -23,16 +23,28 @@ const commentData = [
 
 const SpotScreen = ({ navigation }) => {
 
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            title: '',
+            headerLeft: () => (
+                <BackBtn onPress={() => navigation.navigate('Home')} />
+            ),
+            headerRight: () => (
+                <SpotOpBtn onAdd={() => navigation.navigate('Post')} />
+            ),
+        })
+    }, [navigation]);
+
     return (
         <View style={styles.container}>
 
-            <HeaderBar
+            {/* <HeaderBar
                 left={
                     <BackBtn onPress={() => navigation.navigate('Home')} />}
                 right={
                     <SpotOpBtn onAdd={() => navigation.navigate('Post')} />
                 }
-            />
+            /> */}
 
             <View style={styles.spot}>
                 <SpotItem myStyle={styles.removeShadow} />
@@ -42,6 +54,7 @@ const SpotScreen = ({ navigation }) => {
                 {commentData.map(c => {
                     return (
                         <SpotPost
+                            key={c.name}
                             name={c.name}
                             comment={c.comment}
                         />

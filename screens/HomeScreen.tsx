@@ -1,6 +1,6 @@
 import { StyleSheet, ScrollView, TouchableOpacity, View, Text, Image, Alert, Pressable } from 'react-native';
-import React, { useState, useEffect } from 'react';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
+import { FontAwesome } from '@expo/vector-icons';
 
 import HeaderBar from '../components/common/HeaderBar';
 import FilterBar from '../components/FilterBar';
@@ -32,11 +32,28 @@ const HomeScreen = ({ navigation }) => {
     const [friends, setFriends] = useState([]);
     const [filters, setFilters] = useState([]);
 
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            title: '',
+            headerLeft: () => (
+                <Dropdown
+                    data={locationData}
+                    setSelected={setLocation}
+                    search={false}
+                    defaultOption={locationData[1]}
+                />
+            ),
+            headerRight: () => (
+                <Pressable style={{ margin: 10 }} onPress={() => navigation.navigate('Spot')}>
+                    <FontAwesome name="comment-o" size={25} color={'black'} />
+                </Pressable>
+            )
+        })
+    }, [navigation]);
 
     return (
         <View style={styles.container}>
-
-            <HeaderBar
+            {/* <HeaderBar
                 left={
                     <Dropdown
                         data={locationData}
@@ -44,12 +61,12 @@ const HomeScreen = ({ navigation }) => {
                         search={false}
                         defaultOption={locationData[1]}
                     />}
-                // right={
-                //     <Pressable onPress={() => navigation.navigate('Spot')}>
-                //         <FontAwesome name="comment-o" size={25} color={'black'} />
-                //     </Pressable>
-                // }
-            />
+                right={
+                    <Pressable onPress={() => navigation.navigate('Spot')}>
+                        <FontAwesome name="comment-o" size={25} color={'black'} />
+                    </Pressable>
+                }
+            /> */}
 
             <FilterBar
                 friendData={friendData}

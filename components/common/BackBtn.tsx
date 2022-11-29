@@ -3,7 +3,7 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 const BackBtn = props => {
     return (
-        <Pressable onPress={props.onPress}>
+        <Pressable style={{margin:10}} onPress={props.onPress}>
             <FontAwesome name="chevron-left" size={25} color={'black'} />
         </Pressable>
     )

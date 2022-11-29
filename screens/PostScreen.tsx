@@ -1,5 +1,5 @@
 import { StyleSheet, ScrollView, TouchableOpacity, View, Text, Image, Alert, Pressable } from 'react-native';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 
 import HeaderBar from '../components/common/HeaderBar';
 import BackBtn from '../components/common/BackBtn';
@@ -17,18 +17,22 @@ let SpotData = [
 const PostScreen = ({ navigation }) => {
     const [text, onChangeText] = useState('place holder..');
 
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            title: '',
+            headerLeft: () => (
+                <BackBtn onPress={() => navigation.navigate('Spot')} />
+            ),
+            headerRight: () => (
+                <Pressable style={styles.postBtn} onPress={() => alert("post it")}>
+                    <Text style={styles.postBtnText}>Post</Text>
+                </Pressable>
+            ),
+        })
+    }, [navigation]);
+
     return (
         <View style={styles.container}>
-            <HeaderBar
-                left={
-                    <BackBtn onPress={() => navigation.navigate("Spot")} />}
-                right={
-                    <Pressable style={styles.postBtn} onPress={() => alert("post it")}>
-                        <Text style={styles.postBtnText}>Post</Text>
-                    </Pressable>
-                }
-            />
-
             <SelectSpot data={SpotData} />
 
             <StarRating />
@@ -54,6 +58,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         backgroundColor: '#333',
         textAlign: 'center',
+        margin: 10,
     },
     postBtnText: {
         paddingHorizontal: '2%',
