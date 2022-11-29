@@ -44,11 +44,11 @@ const HomeScreen = ({ navigation }) => {
                         search={false}
                         defaultOption={locationData[1]}
                     />}
-                right={
-                    <Pressable onPress={() => navigation.navigate('Spot')}>
-                        <FontAwesome name="comment-o" size={25} color={'black'} />
-                    </Pressable>
-                }
+                // right={
+                //     <Pressable onPress={() => navigation.navigate('Spot')}>
+                //         <FontAwesome name="comment-o" size={25} color={'black'} />
+                //     </Pressable>
+                // }
             />
 
             <FilterBar
