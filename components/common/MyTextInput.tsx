@@ -2,17 +2,22 @@ import { StyleSheet, TextInput, ScrollView, TouchableOpacity, View, Text, Image,
 
 const MyTextInput = props => {
     return (
-            <TextInput 
+        <View style={styles.container}>
+            <TextInput
                 style={styles.textInput}
                 {...props}
                 editable
             />
+        </View>
     )
 }
 
 export default MyTextInput;
 
 const styles = StyleSheet.create({
+    container: {
+
+    },
     textInput: {
         padding: 0,
         height: '30%',

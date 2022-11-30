@@ -33,6 +33,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
-        borderWidth: 1,
+        // borderWidth: 1,
     }
 })

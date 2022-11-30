@@ -2,10 +2,11 @@ import { StyleSheet, ScrollView, TouchableOpacity, View, Text, Image, Alert, Pre
 import { useState, useEffect, useLayoutEffect } from 'react';
 
 import HeaderBar from '../components/common/HeaderBar';
-import BackBtn from '../components/common/BackBtn';
+import SingleBtn from '../components/common/SingleBtn';
 import SelectSpot from '../components/SelectSpot';
 import StarRating from '../components/StarRating';
 import CommentBox from '../components/CommentBox';
+import AtFriends from '../components/common/AtFriends';
 
 
 let SpotData = [
@@ -14,14 +15,28 @@ let SpotData = [
     { key: 'L\'s', value: 'L\'s' },
 ]
 
+let FriendData = [
+    { key: 'Amy Brown', value: 'Amy Brown' },
+    { key: 'Alex Ericsson', value: 'Alex Ericsson' },
+    { key: 'Nick Nguyen', value: 'Nick Nguyen' },
+    { key: 'Bob Valleberg', value: 'Bob Valleberg' },
+    { key: 'Yining Li', value: 'Yining Li' },
+]
+
+let names = [];
+FriendData.map(i => {
+    names.push(i.key);
+});
+
 const PostScreen = ({ navigation }) => {
     const [text, onChangeText] = useState('place holder..');
+    const [friends, SelectFriends] = useState(names);
 
     useLayoutEffect(() => {
         navigation.setOptions({
             title: '',
             headerLeft: () => (
-                <BackBtn onPress={() => navigation.navigate('Spot')} />
+                <SingleBtn name="chevron-left" onPress={() => navigation.navigate('Spot')} />
             ),
             headerRight: () => (
                 <Pressable style={styles.postBtn} onPress={() => alert("post it")}>
@@ -40,6 +55,12 @@ const PostScreen = ({ navigation }) => {
             <CommentBox
                 onChangeText={text => onChangeText(text)}
                 value={text}
+            />
+
+            <AtFriends
+                title="@ people"
+                names={friends}
+                onPress={()=>{alert(friends)}}
             />
 
 

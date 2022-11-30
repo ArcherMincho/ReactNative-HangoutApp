@@ -12,6 +12,7 @@ library.add(fas);
 import HomeScreen from './screens/HomeScreen';
 import SpotScreen from './screens/SpotScreen';
 import PostScreen from './screens/PostScreen';
+import CalendarScreen from './screens/CalendarScreen';
 
 const HomeStack = createNativeStackNavigator();
 
@@ -29,7 +30,7 @@ const Tab = createBottomTabNavigator();
 function BottomTabs() {
     return (
         <Tab.Navigator
-            initialRouteName="Home"
+            initialRouteName="Calendar"
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
@@ -38,7 +39,7 @@ function BottomTabs() {
                         case "Home":
                             iconName = "house";
                             break;
-                        case "Spot":
+                        case "Calendar":
                             iconName = "calendar";
                             break;
                         case "Post":
@@ -56,7 +57,8 @@ function BottomTabs() {
                 // headerShown: false,
             })}
         >
-            <Tab.Screen name="Home" component={HomeStackScreen} options={{headerShown: false}}/>
+            <Tab.Screen name="Calendar" component={CalendarScreen} options={{ headerTitle: 'My Schedule' }} />
+            <Tab.Screen name="Home" component={HomeStackScreen} options={{ headerShown: false }} />
             <Tab.Screen name="Post" component={PostScreen} />
         </Tab.Navigator>
     );

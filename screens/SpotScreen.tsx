@@ -3,7 +3,7 @@ import React, { useState, useEffect, useLayoutEffect } from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 import HeaderBar from '../components/common/HeaderBar';
-import BackBtn from '../components/common/BackBtn';
+import SingleBtn from '../components/common/SingleBtn';
 import SpotOpBtn from '../components/SpotOpBtn';
 import SpotItem from '../components/SpotItem';
 import SpotPost from '../components/SpotPost';
@@ -27,7 +27,7 @@ const SpotScreen = ({ navigation }) => {
         navigation.setOptions({
             title: '',
             headerLeft: () => (
-                <BackBtn onPress={() => navigation.navigate('Home')} />
+                <SingleBtn name="chevron-left" onPress={() => navigation.navigate('Home')} />
             ),
             headerRight: () => (
                 <SpotOpBtn onAdd={() => navigation.navigate('Post')} />
