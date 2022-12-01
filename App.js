@@ -14,6 +14,9 @@ import SpotScreen from './screens/SpotScreen';
 import PostScreen from './screens/PostScreen';
 import CalendarScreen from './screens/CalendarScreen';
 
+import AgendaScreen from './screens/agendaScreen';
+import ExpandableCalendarScreen from './screens/ExpandableScreen';
+
 const HomeStack = createNativeStackNavigator();
 
 function HomeStackScreen() {
@@ -57,7 +60,7 @@ function BottomTabs() {
                 // headerShown: false,
             })}
         >
-            <Tab.Screen name="Calendar" component={CalendarScreen} options={{ headerTitle: 'My Schedule' }} />
+            <Tab.Screen name="Calendar" component={ExpandableCalendarScreen} options={{ headerTitle: 'My Schedule' }} />
             <Tab.Screen name="Home" component={HomeStackScreen} options={{ headerShown: false }} />
             <Tab.Screen name="Post" component={PostScreen} />
         </Tab.Navigator>
