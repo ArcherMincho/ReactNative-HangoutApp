@@ -1,12 +1,11 @@
 import { StyleSheet, ScrollView, TouchableOpacity, View, Text, Image, Alert, Pressable } from 'react-native';
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
-import pxToDp from '../functions/pxToDp';
 
 import HeaderBar from '../components/common/HeaderBar';
 import FilterBar from '../components/FilterBar';
 import Dropdown from '../components/common/Dropdown';
-import SpotItem from '../components/spots/SpotItem';
+import SpotItem from '../components/cancelled/SpotItem';
 
 const locationData = [
     { key: 'Sweden', value: 'Sweden', disabled: true },
@@ -26,17 +25,6 @@ const filterData = [
     { key: 'Nearest', value: 'Nearest' },
     { key: 'Oldest', value: 'Oldest' },
     { key: 'Hot', value: 'Hot' },
-]
-
-const Spots = [
-    {
-        name: 'Big Bird',
-        star: 4.7,
-        location: 'Ovre Husargatan 17',
-        open: '12PM',
-        distance: 868,
-        promoters: ['Amy Brown', 'Joakim Gustafsson', 'Yining Li'],
-    },
 ]
 
 const HomeScreen = ({ navigation }) => {
@@ -81,7 +69,6 @@ const HomeScreen = ({ navigation }) => {
             /> */}
 
             <FilterBar
-                myStyle={styles.filterContainer}
                 friendData={friendData}
                 setFriends={setFriends}
                 filterData={filterData}
@@ -90,10 +77,15 @@ const HomeScreen = ({ navigation }) => {
             />
 
             <ScrollView style={styles.postContainer}>
-                <SpotItem spots={Spots} />
-                <SpotItem spots={Spots} />
-                <SpotItem spots={Spots} />
-                <SpotItem spots={Spots} />
+                <SpotItem />
+                <SpotItem />
+                <SpotItem />
+                <SpotItem />
+                <SpotItem />
+                <SpotItem />
+                <SpotItem />
+                <SpotItem />
+                <SpotItem />
             </ScrollView>
         </View>
     );
@@ -105,12 +97,9 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: 'flex-start',
         backgroundColor: '#fff',
-    },
-    filterContainer: {
-        paddingHorizontal: pxToDp(31),
+        paddingHorizontal: '8%',
     },
     postContainer: {
-        paddingHorizontal: pxToDp(31),
     }
 }
 );

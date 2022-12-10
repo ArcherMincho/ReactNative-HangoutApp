@@ -1,6 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -33,7 +34,7 @@ const Tab = createBottomTabNavigator();
 function BottomTabs() {
     return (
         <Tab.Navigator
-            initialRouteName="Calendar"
+            initialRouteName="Home"
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
@@ -69,9 +70,11 @@ function BottomTabs() {
 
 const App = () => {
     return (
-        <NavigationContainer>
-            <BottomTabs />
-        </NavigationContainer>
+        <SafeAreaProvider>
+            <NavigationContainer>
+                <BottomTabs />
+            </NavigationContainer>
+        </SafeAreaProvider>
     )
 }
 

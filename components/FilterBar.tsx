@@ -4,7 +4,7 @@ import MultiDropdown from './common/MultiDropdown';
 
 const FilterBar = props => {
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, props.myStyle]}>
             <MultiDropdown
                 data={props.friendData}
                 setSelected={props.setFriends}
