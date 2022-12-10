@@ -44,7 +44,7 @@ const HomeScreen = ({ navigation }) => {
                 />
             ),
             headerRight: () => (
-                <Pressable style={{ margin: 10 }} onPress={() => navigation.navigate('Spot')}>
+                <Pressable style={{ margin: '8%' }} onPress={() => navigation.navigate('Spot')}>
                     <FontAwesome name="comment-o" size={25} color={'black'} />
                 </Pressable>
             )
@@ -97,9 +97,9 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: 'flex-start',
         backgroundColor: '#fff',
+        paddingHorizontal: '8%',
     },
     postContainer: {
-        padding: '5%',
     }
 }
 );

@@ -60,7 +60,7 @@ function BottomTabs() {
                 // headerShown: false,
             })}
         >
-            <Tab.Screen name="Calendar" component={ExpandableCalendarScreen} options={{ headerTitle: 'My Schedule' }} />
+            <Tab.Screen name="Calendar" component={AgendaScreen} options={{ headerTitle: 'My Schedule' }} />
             <Tab.Screen name="Home" component={HomeStackScreen} options={{ headerShown: false }} />
             <Tab.Screen name="Post" component={PostScreen} />
         </Tab.Navigator>
