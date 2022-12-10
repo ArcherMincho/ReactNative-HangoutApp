@@ -4,8 +4,6 @@ import pxToDp from '../../functions/pxToDp';
 const SpotInfo = props => {
     const fontColor = props.fontColor || 'white';
     const spot = props.spot;
-    const lastPromoter = spot.promoters.pop() || 'Yining Li';
-    const promoters = ['Amy Brown', 'Joakim Gustafsson'];
 
     return (
         <View style={styles.container}>
@@ -32,18 +30,18 @@ const SpotInfo = props => {
                 </View>
             </View>
 
+            {spot.promoter1 &&
+                <Text style={[styles.mediumText, { color: fontColor }]}>
+                    <Text>Recommended by </Text>
 
-            <Text style={[styles.mediumText, { color: fontColor }]}>
-                <Text>Recommended by </Text>
-                {promoters.map(i => {
-                    return (
-                        <Text style={{ fontWeight: '600' }}>{i}, </Text>
-                    )
-                })}
-                <Text>and </Text>
-                <Text style={{ fontWeight: '600' }}>{lastPromoter}</Text>
-                <Text>.</Text>
-            </Text>
+                    <Text style={{ fontWeight: '600' }}>{spot.promoter1}</Text>
+                    <Text>, </Text>
+                    {spot.promoter2 &&
+                        <Text style={{ fontWeight: '600' }}>{spot.promoter2}</Text>
+                    }
+                    <Text>, etc.</Text>
+                </Text>
+            }
 
 
         </View>

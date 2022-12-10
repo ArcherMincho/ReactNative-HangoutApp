@@ -35,7 +35,8 @@ const Spots = [
         location: 'Ovre Husargatan 17',
         open: '12PM',
         distance: 868,
-        promoters: ['Amy Brown', 'Joakim Gustafsson', 'Yining Li'],
+        promoter1: 'Amy Brown',
+        promoter2: 'Joakim Gustafsson',
     },
 ]
 
