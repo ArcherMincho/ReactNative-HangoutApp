@@ -82,18 +82,17 @@ const styles = StyleSheet.create({
         paddingTop: pxToDp(1.5),
     },
     lightText: {
-        fontSize: pxToDp(10.5),
-        fontWeight: '400',
+        fontSize: pxToDp(11),
+        fontWeight: '500',
         marginBottom: pxToDp(3),
     },
     mediumText: {
-        fontSize: pxToDp(12.5),
+        fontSize: pxToDp(13),
         fontWeight: '400',
-        marginBottom: pxToDp(3),
+        paddingTop: pxToDp(5),
     },
     heavyText: {
-        fontSize: pxToDp(15),
+        fontSize: pxToDp(15.5),
         fontWeight: '600',
-        marginBottom: pxToDp(3),
     }
 })

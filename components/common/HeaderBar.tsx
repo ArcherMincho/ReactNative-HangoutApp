@@ -1,4 +1,5 @@
 import { StyleSheet, ScrollView, TouchableOpacity, View, Text, Image, Alert } from 'react-native';
+import pxToDp from '../../functions/pxToDp';
 
 const HeaderBar = props => {
     return (
@@ -18,25 +19,26 @@ export default HeaderBar;
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        paddingVertical: '2%',
+        paddingHorizontal: pxToDp(31),
+        paddingVertical: pxToDp(15),
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
 
 
-        // for IOS
-        shadowColor: '#555',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: .3,
-        shadowRadius: 1.5,
-        // for Android
-        elevation: 1.5,
+        // // for IOS
+        // shadowColor: '#555',
+        // shadowOffset: { width: 0, height: 1 },
+        // shadowOpacity: .3,
+        // shadowRadius: 1.5,
+        // // for Android
+        // elevation: 1.5,
     },
     left: {
-        marginLeft: '5%',
+        // marginLeft: '5%',
 
     },
     right: {
-        marginRight: '5%',
+        // marginRight: '5%',
     }
 })

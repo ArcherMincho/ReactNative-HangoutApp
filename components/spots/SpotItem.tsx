@@ -1,17 +1,24 @@
 import { StyleSheet, ScrollView, TouchableOpacity, View, Text, Image, Alert, Pressable } from 'react-native';
+import pxToDp from '../../functions/pxToDp';
 import SpotInfo from './SpotInfo';
+import SpotPhoto from './SpotPhoto';
+import SpotComment from './SpotComment';
 
 
 const SpotItem = props => {
+    const spot = props.spot;
     return (
         <View style={styles.container}>
-            <View style={{ width: '71.44%' }}>
-                {props.spots.map(i => {
-                    return (
-                        <SpotInfo spot={i} />
-                    )
-                })}
+            <View style={styles.infoContainer}>
+                <SpotInfo spot={spot} />
             </View>
+
+            <SpotPhoto pic={spot.pic} />
+
+            <SpotComment
+                latest={spot.latest}
+                promoter={spot.promoter1} />
+
         </View>
     );
 }
@@ -23,8 +30,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         position: 'relative',
 
-        borderWidth: 1,
-        marginBottom: 15,
+        marginBottom: pxToDp(30),
+        marginTop: 20,
+    },
+    infoContainer: {
+        width: pxToDp(254),
+        position: 'absolute',
+        top: pxToDp(168),
+        zIndex: 9,
+        elevation: 9,
     }
 })
 
