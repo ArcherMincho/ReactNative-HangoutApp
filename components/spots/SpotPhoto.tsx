@@ -26,7 +26,9 @@ const styles = StyleSheet.create({
     },
     img: {
         resizeMode: 'stretch',
-        width: pxToDp(320),
+        width: '99.5%',
+        // width: pxToDp(320),
         height: pxToDp(182),
+        alignSelf: 'center',
     }
 })

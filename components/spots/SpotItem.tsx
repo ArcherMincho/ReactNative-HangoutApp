@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         position: 'relative',
 
+        width: '100%',
         marginBottom: pxToDp(30),
         marginTop: 20,
     },
