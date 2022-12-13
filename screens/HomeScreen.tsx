@@ -32,7 +32,7 @@ const filterData = [
 const Spots = [
     {
         name: 'Big Bird',
-        star: 4.7,
+        star: 4.5,
         location: 'Ovre Husargatan 17',
         open: '12PM',
         distance: '868m',
@@ -43,7 +43,7 @@ const Spots = [
     },
     {
         name: 'Ramen-Ya',
-        star: 4.5,
+        star: 4.0,
         location: 'Linneplatsen 4',
         open: '5PM',
         distance: '1.8km',
@@ -53,7 +53,7 @@ const Spots = [
     },
     {
         name: 'Brunchoteket',
-        star: 4.2,
+        star: 3.5,
         location: 'akaungstorget 2',
         open: '9AM',
         distance: '235m',
@@ -124,22 +124,25 @@ const HomeScreen = ({ navigation }) => {
                 }
             />
 
-            <FilterBar
-                myStyle={styles.filterContainer}
-                friendData={friendData}
-                setFriends={setFriends}
-                filterData={filterData}
-                setFilters={setFilters}
-                defaultFilters={filters}
-            />
+            <ScrollView style={styles.contentContainer}>
+                <FilterBar
+                    myStyle={styles.filterContainer}
+                    friendData={friendData}
+                    setFriends={setFriends}
+                    filterData={filterData}
+                    setFilters={setFilters}
+                    defaultFilters={filters}
+                />
 
-            <ScrollView style={styles.postContainer}>
-                {Spots.map(i => {
-                    return (
-                        <SpotItem key={i.name} spot={i} />
-                    )
-                })}
+                <View style={{width:'100%'}}>
+                    {Spots.map(i => {
+                        return (
+                            <SpotItem key={i.name} spot={i} />
+                        )
+                    })}
+                </View>
             </ScrollView>
+
         </SafeAreaView>
     );
 }
@@ -152,10 +155,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
     },
     filterContainer: {
-        paddingHorizontal: pxToDp(31),
         paddingVertical: pxToDp(10),
     },
-    postContainer: {
+    contentContainer: {
         paddingHorizontal: pxToDp(31),
     },
     headerText: {

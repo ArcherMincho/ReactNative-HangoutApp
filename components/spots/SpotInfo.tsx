@@ -1,5 +1,6 @@
 import { StyleSheet, ScrollView, TouchableOpacity, View, Text, Image, Alert, Pressable } from 'react-native';
 import pxToDp from '../../functions/pxToDp';
+import StaticRatingStar from '../common/StaticRatingStar';
 
 const SpotInfo = props => {
     const fontColor = props.fontColor || 'white';
@@ -10,12 +11,10 @@ const SpotInfo = props => {
 
             <View style={styles.titleContainer}>
                 <View style={styles.title}>
-                    <Text style={[styles.heavyText, { color: fontColor }]}>
+                    <Text style={[styles.heavyText, { marginBottom: pxToDp(6), color: fontColor }]}>
                         {spot.name}
                     </Text>
-                    <Text style={[styles.lightText, { color: fontColor }]}>
-                        {spot.star} stars
-                    </Text>
+                    <StaticRatingStar rating={spot.star} fontColor={fontColor} />
                 </View>
                 <View style={styles.position}>
                     <Text style={[styles.lightText, { color: fontColor }]}>
@@ -79,7 +78,7 @@ const styles = StyleSheet.create({
     },
     position: {
         alignItems: 'flex-end',
-        paddingTop: pxToDp(1.5),
+        marginTop: pxToDp(1.5),
     },
     lightText: {
         fontSize: pxToDp(11),
