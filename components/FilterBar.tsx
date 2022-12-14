@@ -1,4 +1,5 @@
 import { StyleSheet, ScrollView, TouchableOpacity, View, Text, Image, Alert, Pressable } from 'react-native';
+import pxToDp from '../functions/pxToDp';
 import Dropdown from './common/Dropdown';
 import MultiDropdown from './common/MultiDropdown';
 
@@ -28,13 +29,14 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
+        marginBottom: pxToDp(10),
 
-        // for IOS
-        shadowColor: '#555',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: .3,
-        shadowRadius: 1.5,
-        // for Android
-        elevation: 1.5,
+        // // for IOS
+        // shadowColor: '#555',
+        // shadowOffset: { width: 0, height: 1 },
+        // shadowOpacity: .3,
+        // shadowRadius: 1.5,
+        // // for Android
+        // elevation: 1.5,
     },
 })

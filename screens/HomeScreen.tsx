@@ -8,6 +8,7 @@ import HeaderBar from '../components/common/HeaderBar';
 import FilterBar from '../components/FilterBar';
 import Dropdown from '../components/common/Dropdown';
 import SpotItem from '../components/spots/SpotItem';
+import SearchBar from '../components/common/SearchBar';
 
 const locationData = [
     { key: 'Sweden', value: 'Sweden', disabled: true },
@@ -79,6 +80,8 @@ const HomeScreen = ({ navigation }) => {
     const [location, setLocation] = useState("");
     const [friends, setFriends] = useState([]);
     const [filters, setFilters] = useState([]);
+    const [searchText, setSearchText] = useState("");
+    const [clicked, setClicked] = useState(false);
 
 
     // useLayoutEffect(() => {
@@ -125,6 +128,13 @@ const HomeScreen = ({ navigation }) => {
             />
 
             <ScrollView style={styles.contentContainer}>
+                <SearchBar 
+                    searchText={searchText}
+                    setSearchText={setSearchText}
+                    clicked={clicked}
+                    setClicked={setClicked}
+                />
+
                 <FilterBar
                     myStyle={styles.filterContainer}
                     friendData={friendData}
@@ -155,7 +165,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
     },
     filterContainer: {
-        paddingVertical: pxToDp(10),
+        marginVertical: pxToDp(20),
     },
     contentContainer: {
         paddingHorizontal: pxToDp(31),
