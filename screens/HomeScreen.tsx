@@ -1,7 +1,7 @@
-import { StyleSheet, ScrollView, View, Text, Image, Pressable } from 'react-native';
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import { StyleSheet, ScrollView, View, Text, Pressable } from 'react-native';
+import { useState, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { FontAwesome, FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 import pxToDp from '../functions/pxToDp';
 
 import HeaderBar from '../components/common/HeaderBar';
@@ -39,7 +39,7 @@ const Spots = [
         distance: '868m',
         promoter1: 'Amy Brown',
         promoter2: 'Joakim Gustafsson',
-        pic: '2',
+        pic: '0',
         latest: 'For everyone who loves chicken, you should definitely come here! Omg they have the best fried chicken in gbg. A solid 10/10.'
     },
     {
@@ -82,6 +82,10 @@ const HomeScreen = ({ navigation }) => {
     const [filters, setFilters] = useState([]);
     const [searchText, setSearchText] = useState("");
     const [clicked, setClicked] = useState(false);
+
+    function navigateTo(name, spot) {
+        navigation.navigate(name, { spot });
+    }
 
 
     // useLayoutEffect(() => {
@@ -128,7 +132,7 @@ const HomeScreen = ({ navigation }) => {
             />
 
             <ScrollView style={styles.contentContainer}>
-                <SearchBar 
+                <SearchBar
                     searchText={searchText}
                     setSearchText={setSearchText}
                     clicked={clicked}
@@ -144,10 +148,10 @@ const HomeScreen = ({ navigation }) => {
                     defaultFilters={filters}
                 />
 
-                <View style={{width:'100%'}}>
+                <View style={{ width: '100%' }}>
                     {Spots.map(i => {
                         return (
-                            <SpotItem key={i.name} spot={i} />
+                            <SpotItem key={i.name} spot={i} onPress={navigateTo} />
                         )
                     })}
                 </View>

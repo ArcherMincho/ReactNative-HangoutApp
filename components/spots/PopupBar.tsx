@@ -11,26 +11,39 @@ library.add(far);
 library.add(fas);
 
 
-const SideBar = props => {
+const PopupBar = props => {
     const size = pxToDp(28);
     const color = 'white';
-    const iconNames = [
-        ["far", "calendar"],
-        ["fas", "store"],
-        ["fas", "plus"],
-        ["far", "circle-user"]
+    const Icons = [
+        {
+            icon:["far", "calendar"],
+            route: "Calendar"
+        },
+        {
+            icon:["fas", "store"],
+            route: "Spot"
+        },
+        {
+            icon:["fas", "plus"],
+            route: "Post"
+        },
+        {
+            icon:["far", "circle-user"],
+            route: "SpotHome"
+        }
     ];
 
     return (
         <View style={styles.container}>
-            {iconNames.map(i => {
+            {Icons.map(i => {
                 return (
                     <Pressable
-                        key={i[1]}
+                        key={i.route}
+                        onPress={() => props.onPress(i.route)}
                         style={({ pressed }) =>
                             [styles.btn, pressed && styles.onPressing]}
                     >
-                        <FontAwesomeIcon icon={i} size={size} color={color} />
+                        <FontAwesomeIcon icon={i.icon} size={size} color={color} />
                     </Pressable>
                 )
             })}
@@ -38,7 +51,7 @@ const SideBar = props => {
     )
 }
 
-export default SideBar;
+export default PopupBar;
 
 const styles = StyleSheet.create({
     container: {

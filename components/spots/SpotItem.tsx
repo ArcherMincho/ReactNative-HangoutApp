@@ -1,22 +1,25 @@
-import { StyleSheet, ScrollView, TouchableOpacity, View, Text, Image, Alert, Pressable } from 'react-native';
-import { useState, useEffect } from 'react';
+import { StyleSheet, View, Pressable } from 'react-native';
+import { useState } from 'react';
 import pxToDp from '../../functions/pxToDp';
 
 import SpotInfo from './SpotInfo';
 import SpotPhoto from './SpotPhoto';
 import SpotComment from './SpotComment';
-import SideBar from './SideBar';
+import PopupBar from './PopupBar';
 
 
 const SpotItem = props => {
     const spot = props.spot;
     const [visible, setVisible] = useState(false);
 
+    function handlePress (routeName) {
+        props.onPress(routeName, spot);
+    }
 
     return (
         <View style={styles.container}>
             {visible && (
-                <SideBar />
+                <PopupBar onPress={handlePress} />
             )}
 
             <Pressable

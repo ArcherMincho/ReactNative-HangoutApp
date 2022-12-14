@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
         width: '100%',
         paddingVertical: pxToDp(8.5),
         paddingLeft: pxToDp(17),
-        marginTop: pxToDp(5),
 
         borderWidth: pxToDp(2),
         borderColor: 'black',

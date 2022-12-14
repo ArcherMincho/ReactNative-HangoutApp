@@ -1,12 +1,14 @@
-import { StyleSheet, ScrollView, TouchableOpacity, View, Text, Image, Alert, Pressable } from 'react-native';
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import { StyleSheet, ScrollView, View, Text, Pressable } from 'react-native';
+import { useState } from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import pxToDp from '../functions/pxToDp';
 
 import HeaderBar from '../components/common/HeaderBar';
-import SingleBtn from '../components/common/SingleBtn';
 import SpotOpBtn from '../components/SpotOpBtn';
-import SpotItem from '../components/cancelled/SpotItem';
 import SpotPost from '../components/SpotPost';
+import BackBtn from '../components/common/BackBtn';
+import SpotShort from '../components/spots/SpotShort';
 
 const commentData = [
     {
@@ -21,34 +23,34 @@ const commentData = [
     },
 ]
 
-const SpotScreen = ({ navigation }) => {
+const SpotScreen = ({ navigation, route }) => {
 
-    useLayoutEffect(() => {
-        navigation.setOptions({
-            title: '',
-            headerLeft: () => (
-                <SingleBtn name="chevron-left" onPress={() => navigation.navigate('Home')} />
-            ),
-            headerRight: () => (
-                <SpotOpBtn onAdd={() => navigation.navigate('Post')} />
-            ),
-        })
-    }, [navigation]);
+    const spot = route.params.spot;
+
+    // useLayoutEffect(() => {
+    //     navigation.setOptions({
+    //         title: '',
+    //         headerLeft: () => (
+    //             <SingleBtn name="chevron-left" onPress={() => navigation.navigate('Home')} />
+    //         ),
+    //         headerRight: () => (
+    //             <SpotOpBtn onAdd={() => navigation.navigate('Post')} />
+    //         ),
+    //     })
+    // }, [navigation]);
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
 
-            {/* <HeaderBar
+            <HeaderBar
                 left={
-                    <BackBtn onPress={() => navigation.navigate('Home')} />}
+                    <BackBtn onPress={() => navigation.navigate('SpotHome')} />}
                 right={
                     <SpotOpBtn onAdd={() => navigation.navigate('Post')} />
                 }
-            /> */}
+            />
 
-            <View style={styles.spot}>
-                <SpotItem myStyle={styles.removeShadow} />
-            </View>
+            <SpotShort spot={spot} />
 
             <View style={styles.commentsContainer}>
                 {commentData.map(c => {
@@ -61,7 +63,7 @@ const SpotScreen = ({ navigation }) => {
                     )
                 })}
             </View>
-        </View>
+        </SafeAreaView>
     );
 }
 
@@ -71,18 +73,6 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: 'flex-start',
         backgroundColor: '#fff',
-    },
-    spot: {
-        paddingVertical: '8%',
-        paddingHorizontal: '5%',
-        borderWidth: 1,
-    },
-    removeShadow: {
-        // for IOS
-        shadowColor: '#fff',
-        // for Android
-        elevation: 0,
-        marginBottom: 0,
     },
     commentsContainer: {
         width: '100%',

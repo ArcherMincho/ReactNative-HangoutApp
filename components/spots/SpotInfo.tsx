@@ -4,14 +4,20 @@ import StaticRatingStar from '../common/StaticRatingStar';
 
 const SpotInfo = props => {
     const fontColor = props.fontColor || 'white';
-    const spot = props.spot;
+    const { bgColor, titleSize, spot } = props;
 
     return (
-        <View style={styles.container}>
-
+        <View style={[
+            styles.container,
+            bgColor && { backgroundColor: bgColor }
+        ]}>
             <View style={styles.titleContainer}>
                 <View style={styles.title}>
-                    <Text style={[styles.heavyText, { marginBottom: pxToDp(6), color: fontColor }]}>
+                    <Text style={[
+                        styles.heavyText,
+                        { marginBottom: pxToDp(6), color: fontColor },
+                        titleSize && { fontSize: titleSize }
+                    ]}>
                         {spot.name}
                     </Text>
                     <StaticRatingStar rating={spot.star} fontColor={fontColor} />
@@ -59,14 +65,6 @@ const styles = StyleSheet.create({
         borderWidth: pxToDp(2),
         borderColor: 'black',
         borderRadius: pxToDp(10),
-
-        // // for IOS
-        // shadowColor: '#999',
-        // shadowOffset: { width: 0, height: 0 },
-        // shadowOpacity: .8,
-        // shadowRadius: pxToDp(10),
-        // // for Android
-        // elevation: 2,
     },
     titleContainer: {
         flexDirection: 'row',

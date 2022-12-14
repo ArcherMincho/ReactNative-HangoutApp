@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
         borderWidth: pxToDp(1),
         borderRadius: pxToDp(10),
         padding: pxToDp(2),
+        backgroundColor: 'white',
     },
     img: {
         resizeMode: 'stretch',
