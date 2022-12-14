@@ -32,12 +32,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '100%',
         paddingHorizontal: pxToDp(31),
-        borderWidth: 1,
     },
     photo: {
         width: pxToDp(328),
         zIndex: 5,
-
     },
     info: {
         position: 'relative',
