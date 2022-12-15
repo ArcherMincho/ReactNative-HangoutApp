@@ -2,12 +2,13 @@ import { StyleSheet, View, Text, Image, Alert, Pressable } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import pxToDp from '../../functions/pxToDp';
 
-const StaticRatingStar = ({ rating, fontColor }) => {
+const StaticRatingStar = props => {
+    const { rating, fontColor, width } = props;
     const size = pxToDp(14);
     const color = '#F1B94C';
     let rate = rating;
     return (
-        <View style={[styles.container, styles.flexRow]}>
+        <View style={[styles.flexRow, width && { width: pxToDp(width) }]}>
             <View style={[styles.starContainer, styles.flexRow]}>
                 {[...Array(5)].map(() => {
                     let name;
@@ -32,8 +33,6 @@ const StaticRatingStar = ({ rating, fontColor }) => {
 export default StaticRatingStar;
 
 const styles = StyleSheet.create({
-    container: {
-    },
     starContainer: {
         width: pxToDp(80),
     },

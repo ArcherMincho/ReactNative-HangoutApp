@@ -10,9 +10,11 @@ import { far } from '@fortawesome/free-regular-svg-icons';
 
 library.add(fas);
 
+import BottomTabBar from './components/common/BottomTabBar';
 import HomeScreen from './screens/HomeScreen';
 import SpotScreen from './screens/SpotScreen';
 import PostScreen from './screens/PostScreen';
+import UserScreen from './screens/UserScreen';
 import CalendarScreen from './screens/CalendarScreen';
 
 import AgendaScreen from './screens/agendaScreen';
@@ -22,9 +24,9 @@ const HomeStack = createNativeStackNavigator();
 
 function HomeStackScreen() {
     return (
-        <HomeStack.Navigator 
-        initialRouteName='SpotHome'
-        screenOptions={{ headerShown: false }}
+        <HomeStack.Navigator
+            initialRouteName='SpotHome'
+            screenOptions={{ headerShown: false }}
         >
             <HomeStack.Screen name="SpotHome" component={HomeScreen} />
             <HomeStack.Screen name="Spot" component={SpotScreen} />
@@ -38,35 +40,36 @@ function BottomTabs() {
     return (
         <Tab.Navigator
             initialRouteName="Home"
-            screenOptions={({ route }) => ({
-                tabBarIcon: ({ focused, color, size }) => {
-                    let iconName;
+            tabBar={props => <BottomTabBar {...props} />}
+        // screenOptions={({ route }) => ({
+        //     tabBarIcon: ({ focused, color, size }) => {
+        //         let iconName;
 
-                    switch (route.name) {
-                        case "Home":
-                            iconName = "house";
-                            break;
-                        case "Calendar":
-                            iconName = "calendar";
-                            break;
-                        case "Post":
-                            iconName = "circle-plus";
-                            break;
-                        default:
-                            iconName = "bell-exclamation";
-                    }
+        //         switch (route.name) {
+        //             case "Home":
+        //                 iconName = "house";
+        //                 break;
+        //             case "Calendar":
+        //                 iconName = "calendar";
+        //                 break;
+        //             case "Post":
+        //                 iconName = "circle-plus";
+        //                 break;
+        //             default:
+        //                 iconName = "bell-exclamation";
+        //         }
 
-                    return <FontAwesomeIcon icon={["fas", iconName]} size={size} color={color} />;
-                },
-                tabBarActiveTintColor: "tomato",
-                tabBarInactiveTintColor: "gray",
-                tabBarShowLabel: false,
-                // headerShown: false,
-            })}
+        //         return <FontAwesomeIcon icon={["fas", iconName]} size={size} color={color} />;
+        //     },
+        //     tabBarActiveTintColor: "tomato",
+        //     tabBarInactiveTintColor: "gray",
+        //     tabBarShowLabel: false,
+        // })}
         >
             <Tab.Screen name="Calendar" component={AgendaScreen} options={{ headerTitle: 'My Schedule' }} />
             <Tab.Screen name="Home" component={HomeStackScreen} options={{ headerShown: false }} />
             <Tab.Screen name="Post" component={PostScreen} />
+            <Tab.Screen name="User" component={UserScreen} />
         </Tab.Navigator>
     );
 }

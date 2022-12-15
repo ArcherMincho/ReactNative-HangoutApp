@@ -4,34 +4,25 @@ import pxToDp from '../../functions/pxToDp';
 
 import SpotInfo from './SpotInfo';
 import SpotPhoto from './SpotPhoto';
-import SpotComment from './SpotComment';
-import PopupBar from './PopupBar';
+import LatestComment from './LatestComment';
 
 
 const SpotItem = props => {
     const spot = props.spot;
-    const [visible, setVisible] = useState(false);
-
-    function handlePress (routeName) {
-        props.onPress(routeName, spot);
-    }
 
     return (
         <View style={styles.container}>
-            {visible && (
-                <PopupBar onPress={handlePress} />
-            )}
 
             <Pressable
                 style={styles.infoContainer}
-                onPress={() => setVisible(!visible)}
+                onPress={() => props.onPress(spot)}
             >
                 <SpotInfo spot={spot} />
             </Pressable>
 
             <SpotPhoto pic={spot.pic} />
 
-            <SpotComment
+            <LatestComment 
                 latest={spot.latest}
                 promoter={spot.promoter1} />
 

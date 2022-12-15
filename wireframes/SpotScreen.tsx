@@ -4,9 +4,9 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 import HeaderBar from '../components/common/HeaderBar';
 import SingleBtn from '../components/common/SingleBtn';
-import SpotOpBtn from '../components/SpotOpBtn';
+import SpotOpBtn from '../components/spots/SpotOpBtn';
 import SpotItem from '../components/cancelled/SpotItem';
-import SpotPost from '../components/SpotPost';
+import SpotPost from '../components/spots/SpotPost';
 
 const commentData = [
     {

@@ -83,8 +83,8 @@ const HomeScreen = ({ navigation }) => {
     const [searchText, setSearchText] = useState("");
     const [clicked, setClicked] = useState(false);
 
-    function navigateTo(name, spot) {
-        navigation.navigate(name, { spot });
+    function navigateTo(spot) {
+        navigation.navigate("Spot", { spot });
     }
 
 
