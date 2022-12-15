@@ -13,19 +13,29 @@ const SpotPost = props => {
 
     const [liked, setLiked] = useState(post.liked);
     const [saved, setSaved] = useState(post.saved);
+    const [reply, setReply] = useState("");
+    const [inputVisible, setInputVisible] = useState(false);
 
+    // Here, use useEffect on states liked and saved
+    // will reverse their boolean value every time the component
+    // is rendered, even though when it is mounted for the first time.
+    // In other words, every time a user go (back) into the SpotScreen,
+    // the status of Liked and Saved icon will be different from
+    // the last time, even though they do nothing on these icons.
     const handleStatusChange = (status) => {
         if (status === "liked")
             setLiked(!liked);
         else setSaved(!saved);
         props.onStatusChange(post.name, status);
-    }
+    };
 
-    const [newReply, setNewReply] = useState("");
-    useEffect(() => {
-        props.onReplyAdded(post.name, newReply);
-        setNewReply("");
-    }, [newReply]);
+    const handleSubmitEditing = () => {
+        if (reply.length > 0)
+            props.onReplyAdded(post.name, reply);
+        setInputVisible(false);
+        setReply("");
+    };
+
 
     return (
         <View style={styles.container}>
@@ -53,11 +63,17 @@ const SpotPost = props => {
                     liked={liked}
                     saved={saved}
                     onStatusChange={handleStatusChange}
-                    newReply={newReply}
-                    setNewReply={setNewReply}
+                    setInputVisible={setInputVisible}
                 />
 
-                <PostComment likes={post.likes} replies={post.replies} />
+                <PostComment
+                    likes={post.likes}
+                    replies={post.replies}
+                    inputVisible={inputVisible}
+                    onSubmitEditing={handleSubmitEditing}
+                    reply={reply}
+                    setReply={setReply}
+                />
             </View>
         </View>
     )

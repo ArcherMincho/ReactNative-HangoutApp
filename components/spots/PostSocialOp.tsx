@@ -12,24 +12,25 @@ const PostSocialOp = props => {
     const gray = '#A6A3A3';
     const yellow = '#F1B94C';
     const red = '#F28F8A';
+    const pink = '#EFCAD2';
 
-    const { liked, saved, onStatusChange, newReply, setNewReply } = props;
+    const { liked, saved, onStatusChange, setInputVisible } = props;
 
     return (
         <View style={styles.container}>
             <Pressable onPress={() => { onStatusChange("liked") }}>
                 {liked ?
-                    <FontAwesome name="heart" size={size - 1} color={red} />
+                    <FontAwesome name="heart" size={size - 1} color={pink} />
                     : <FontAwesome5 name="heart" size={size} color={gray} />
                 }
             </Pressable>
 
             <View style={styles.rightContainer}>
-                <Pressable onPress={() => { setNewReply("") }} >
+                <Pressable onPress={() => { setInputVisible(true) }} >
                     {({ pressed }) => {
                         return (
                             pressed
-                                ? <FontAwesome5 name="comment-alt" size={size} color={yellow} />
+                                ? <FontAwesome5 name="comment-alt" size={size-1} color={yellow} />
                                 : <FontAwesome5 name="comment-alt" size={size} color={gray} />
                         )
                     }}

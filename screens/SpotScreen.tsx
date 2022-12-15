@@ -16,8 +16,8 @@ const commentData = [
         star: 5.0,
         timestamp: "32 minutes ago",
         pics: ["0", "1", "2"],
-        liked: true,
-        saved: true,
+        liked: false,
+        saved: false,
         likes: ["Olivia Lundin", "Dennis Denito"],
         comment: 'For everyone who loves chicken, you should definitely come here! Omg they have the best fried chicken in gtg. A solid 10/10.',
         replies: [
@@ -70,10 +70,10 @@ const SpotScreen = ({ navigation, route }) => {
         })
     };
 
-    const handleReplyAdded = (name, newReply) => {
+    const handleReplyAdded = (name, reply) => {
         commentData.map(c => {
             if (c.name === name) {
-                c.replies.push({ name: "you", reply: newReply })
+                c.replies.push({ name: "you", reply: reply })
             }
         })
     };
@@ -123,6 +123,8 @@ const SpotScreen = ({ navigation, route }) => {
                         )
                     })}
                 </View>
+
+                <View style={{height: 100}}></View>
             </ScrollView>
         </SafeAreaView>
     );
