@@ -20,8 +20,11 @@ import CalendarScreen from './screens/CalendarScreen';
 import AgendaScreen from './screens/agendaScreen';
 import ExpandableCalendarScreen from './screens/ExpandableScreen';
 
-const HomeStack = createNativeStackNavigator();
 
+// If want to let a few screens hold the same tab in the navigation bar
+// use the following stacked screen as a "screen" in the Tab Navigator
+// for example :<Tab.Screen name="Home" component={HomeStackScreen} />
+const HomeStack = createNativeStackNavigator();
 function HomeStackScreen() {
     return (
         <HomeStack.Navigator
@@ -35,16 +38,16 @@ function HomeStackScreen() {
 }
 
 const Tab = createBottomTabNavigator();
-
 function BottomTabs() {
     return (
         <Tab.Navigator
-            initialRouteName="Home"
+            initialRouteName="SpotHome"
             tabBar={props => <BottomTabBar {...props} />}
+            screenOptions={{ headerShown: false }}
+        // If to set up icons corresponding to specific tabs here:
         // screenOptions={({ route }) => ({
         //     tabBarIcon: ({ focused, color, size }) => {
         //         let iconName;
-
         //         switch (route.name) {
         //             case "Home":
         //                 iconName = "house";
@@ -66,19 +69,27 @@ function BottomTabs() {
         //     tabBarShowLabel: false,
         // })}
         >
-            <Tab.Screen name="Calendar" component={AgendaScreen} options={{ headerTitle: 'My Schedule' }} />
-            <Tab.Screen name="Home" component={HomeStackScreen} options={{ headerShown: false }} />
+            <Tab.Screen name="Calendar" component={AgendaScreen} />
+            <Tab.Screen name="SpotHome" component={HomeScreen} />
             <Tab.Screen name="Post" component={PostScreen} />
             <Tab.Screen name="User" component={UserScreen} />
         </Tab.Navigator>
     );
 }
 
+const Stack = createNativeStackNavigator();
 const App = () => {
     return (
         <SafeAreaProvider>
             <NavigationContainer>
-                <BottomTabs />
+                <Stack.Navigator screenOptions={{ headerShown: false }}>
+                    {/* To show the tab bar only on the Home, Post, and User Screens,
+                    encapsulate them into one tab navigator (i.e., BottomTabs),
+                    and use it as a "screen" in a stack navigator, of which brother elements
+                    are screens those don't want the tab bar shown. */}
+                    <Stack.Screen name="Home" component={BottomTabs} />
+                    <Stack.Screen name="Spot" component={SpotScreen} />
+                </Stack.Navigator>
             </NavigationContainer>
         </SafeAreaProvider>
     )

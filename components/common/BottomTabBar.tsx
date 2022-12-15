@@ -20,7 +20,7 @@ const BottomTabBar = ({ state, descriptors, navigation }) => {
     const color = 'white';
     const Icons = {
         Calendar: ["far", "calendar"],
-        Home: ["fas", "store"],
+        SpotHome: ["fas", "store"],
         Post: ["fas", "plus"],
         User: ["far", "circle-user"],
     };
