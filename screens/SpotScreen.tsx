@@ -1,4 +1,4 @@
-import { StyleSheet, ScrollView, View, Text, Image, Pressable } from 'react-native';
+import { StyleSheet, ScrollView, View, Text, Image, Alert, Pressable } from 'react-native';
 import { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import pxToDp from '../functions/pxToDp';
@@ -17,6 +17,7 @@ const commentData = [
         timestamp: "32 minutes ago",
         pics: ["0", "1", "2"],
         liked: true,
+        saved: true,
         likes: ["Olivia Lundin", "Dennis Denito"],
         comment: 'For everyone who loves chicken, you should definitely come here! Omg they have the best fried chicken in gtg. A solid 10/10.',
         replies: [
@@ -26,10 +27,11 @@ const commentData = [
     {
         name: 'Joakim Gustafsson',
         portrait: '1',
-        star: 5.0,
+        star: 4.5,
         timestamp: "2 August",
         pics: ["0"],
         liked: false,
+        saved: false,
         likes: ["Dennis Denito"],
         comment: "I love their garlic fries! So flavourful! Wow they did put a lot of garlic here! My best advice: don't eat them if you're on a date, can't talk to anyone without smelling like...",
         replies: []
@@ -41,6 +43,7 @@ const commentData = [
         timestamp: "17 July",
         pics: ["0", "1", "2", "3", "4"],
         liked: false,
+        save: false,
         likes: ["Tahiko Matsui"],
         comment: 'Everything is good. Zhiran said the sweet & sour chicken is waaaaay too sweet but I think it was really good. I have a sweet tooth tho! Not sure if you guys would like it.',
         replies: [
@@ -53,6 +56,27 @@ const commentData = [
 const SpotScreen = ({ navigation, route }) => {
 
     const spot = route.params.spot;
+
+    const handleStatusChange = (name, status) => {
+        commentData.map(c => {
+            if (c.name == name) {
+                c[status] = !c[status];
+
+                if (status === "liked") {
+                    const [end] = c.likes.slice(-1);
+                    end == "You" ? c.likes.pop() : c.likes.push("You");
+                }
+            }
+        })
+    };
+
+    const handleReplyAdded = (name, newReply) => {
+        commentData.map(c => {
+            if (c.name === name) {
+                c.replies.push({ name: "you", reply: newReply })
+            }
+        })
+    };
 
     // useLayoutEffect(() => {
     //     navigation.setOptions({
@@ -78,22 +102,27 @@ const SpotScreen = ({ navigation, route }) => {
             />
 
             <ScrollView>
-            <SpotShort spot={spot} />
+                <SpotShort spot={spot} />
 
-            <View style={styles.commentsContainer}>
-                <View style={styles.comTitle}>
-                    <Text style={styles.titleText}>Post</Text>
-                    <Image 
-                    source={require('../assets/yellow/createPost.png')}
-                    style={styles.createPost}
-                    />
+                <View style={styles.commentsContainer}>
+                    <View style={styles.comTitle}>
+                        <Text style={styles.titleText}>Post</Text>
+                        <Image
+                            source={require('../assets/yellow/createPost.png')}
+                            style={styles.createPost}
+                        />
+                    </View>
+                    {commentData.map(c => {
+                        return (
+                            <SpotPost
+                                key={c.name}
+                                post={c}
+                                onStatusChange={handleStatusChange}
+                                onReplyAdded={handleReplyAdded}
+                            />
+                        )
+                    })}
                 </View>
-                {commentData.map(c => {
-                    return (
-                        <SpotPost key={c.name} post={c} />
-                    )
-                })}
-            </View>
             </ScrollView>
         </SafeAreaView>
     );

@@ -2,7 +2,7 @@ import { StyleSheet, View, Image } from 'react-native';
 import pxToDp from '../../functions/pxToDp';
 import img_load from '../../functions/img_load';
 
-const SpotPostPics = ({ user, pics }) => {
+const PostPics = ({ user, pics }) => {
     return (
         <View style={styles.container}>
             {pics && pics.map(i => {
@@ -18,7 +18,7 @@ const SpotPostPics = ({ user, pics }) => {
     )
 }
 
-export default SpotPostPics;
+export default PostPics;
 
 const styles = StyleSheet.create({
     container: {

@@ -1,12 +1,32 @@
 import { StyleSheet, View, Text, Image, Pressable } from 'react-native';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import pxToDp from '../../functions/pxToDp';
 import img_load from '../../functions/img_load';
+
 import StaticRatingStar from '../common/StaticRatingStar';
-import SpotPostPics from './SpotPostPics';
-import SpotComment from './SpotComment';
+import PostPics from './PostPics';
+import PostSocialOp from './PostSocialOp';
+import PostComment from './PostComment';
 
 const SpotPost = props => {
     const post = props.post;
+
+    const [liked, setLiked] = useState(post.liked);
+    const [saved, setSaved] = useState(post.saved);
+
+    const handleStatusChange = (status) => {
+        if (status === "liked")
+            setLiked(!liked);
+        else setSaved(!saved);
+        props.onStatusChange(post.name, status);
+    }
+
+    const [newReply, setNewReply] = useState("");
+    useEffect(() => {
+        props.onReplyAdded(post.name, newReply);
+        setNewReply("");
+    }, [newReply]);
+
     return (
         <View style={styles.container}>
             <Image
@@ -18,14 +38,26 @@ const SpotPost = props => {
                 <Text style={styles.nameText}>{post.name}</Text>
 
                 <View style={styles.decContainer}>
-                    <StaticRatingStar rating={post.star} fontColor="black" width={pxToDp(90)} />
+                    <StaticRatingStar
+                        rating={post.star}
+                        fontColor="black"
+                        width={pxToDp(90)}
+                    />
                     <Text style={{ color: '#A6A3A3' }}>{post.timestamp}</Text>
                 </View>
 
                 <Text style={styles.comText}>{post.comment}</Text>
-                <SpotPostPics user={post.portrait} pics={post.pics} />
+                <PostPics user={post.portrait} pics={post.pics} />
 
-                <SpotComment liked={post.liked} likes={post.likes} replies={post.replies} />
+                <PostSocialOp
+                    liked={liked}
+                    saved={saved}
+                    onStatusChange={handleStatusChange}
+                    newReply={newReply}
+                    setNewReply={setNewReply}
+                />
+
+                <PostComment likes={post.likes} replies={post.replies} />
             </View>
         </View>
     )
