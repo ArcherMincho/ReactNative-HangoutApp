@@ -1,6 +1,6 @@
-import { StyleSheet, ScrollView, View, Text, Image, Alert, Pressable } from 'react-native';
-import { useState } from 'react';
+import { StyleSheet, ScrollView, View, Text, Image, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Ionicons } from '@expo/vector-icons';
 import pxToDp from '../functions/pxToDp';
 
 import HeaderBar from '../components/common/HeaderBar';
@@ -53,6 +53,9 @@ const commentData = [
     },
 ]
 
+const size = pxToDp(32);
+const color = '#F1B94C';
+
 const SpotScreen = ({ navigation, route }) => {
 
     const spot = route.params.spot;
@@ -78,18 +81,6 @@ const SpotScreen = ({ navigation, route }) => {
         })
     };
 
-    // useLayoutEffect(() => {
-    //     navigation.setOptions({
-    //         title: '',
-    //         headerLeft: () => (
-    //             <SingleBtn name="chevron-left" onPress={() => navigation.navigate('Home')} />
-    //         ),
-    //         headerRight: () => (
-    //             <SpotOpBtn onAdd={() => navigation.navigate('Post')} />
-    //         ),
-    //     })
-    // }, [navigation]);
-
     return (
         <SafeAreaView style={styles.container}>
 
@@ -97,7 +88,7 @@ const SpotScreen = ({ navigation, route }) => {
                 left={
                     <BackBtn onPress={() => navigation.navigate('SpotHome')} />}
                 right={
-                    <SpotOpBtn onAdd={() => navigation.navigate('Post')} />
+                    <SpotOpBtn onAdd={() => { }} />
                 }
             />
 
@@ -107,10 +98,16 @@ const SpotScreen = ({ navigation, route }) => {
                 <View style={styles.commentsContainer}>
                     <View style={styles.comTitle}>
                         <Text style={styles.titleText}>Post</Text>
-                        <Image
-                            source={require('../assets/yellow/createPost.png')}
-                            style={styles.createPost}
-                        />
+                        <Pressable
+                            onPress={() => navigation.navigate('Post', {spotName:spot.name})}
+                        >
+                            {({ pressed }) => {
+                                const name = pressed ? "ios-create" : "create-outline";
+                                return (
+                                    <Ionicons name={name} size={size} color={color} />
+                                )
+                            }}
+                        </Pressable>
                     </View>
                     {commentData.map(c => {
                         return (
@@ -124,7 +121,7 @@ const SpotScreen = ({ navigation, route }) => {
                     })}
                 </View>
 
-                <View style={{height: 100}}></View>
+                <View style={{ height: 100 }}></View>
             </ScrollView>
         </SafeAreaView>
     );

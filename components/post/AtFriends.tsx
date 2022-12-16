@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
 
         width: '100%',
-        marginTop: 10,
 
         borderTopWidth: pxToDp(1),
         borderBottomWidth: pxToDp(1),

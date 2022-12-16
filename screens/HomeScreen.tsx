@@ -106,7 +106,7 @@ const HomeScreen = ({ navigation, route }) => {
                     </View>
                 }
                 right={
-                    <Pressable>
+                    <Pressable onPress={() => navigation.navigate("Post")}>
                         <FontAwesome5 name="comment-alt" size={pxToDp(26)} color={'black'} />
                     </Pressable>
                 }
@@ -122,7 +122,7 @@ const HomeScreen = ({ navigation, route }) => {
 
                 <FilterBar
                     filterText={fri && fri[0]}
-                    onPress={() => navigation.navigate("Select", { preScreen:'SpotHome', fri })}
+                    onPress={() => navigation.navigate("Select", { preScreen: 'SpotHome', fri })}
                 />
 
                 <View style={{ width: '100%' }}>

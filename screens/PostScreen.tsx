@@ -7,19 +7,21 @@ import HeaderBar from '../components/common/HeaderBar';
 import BackBtn from '../components/common/BackBtn';
 import PostBtn from '../components/post/PostBtn';
 import SearchBar from '../components/common/SearchBar';
-
 import MyStarRating from '../components/post/MyStarRating';
 import CommentBox from '../components/post/CommentBox';
 import AtFriends from '../components/post/AtFriends';
+import ImageBox from '../components/post/ImageBox';
 
 const PostScreen = ({ navigation, route }) => {
-    const [searchText, setSearchText] = useState("");
+    // fri: selected friends to notify, passed from SelectScreen
+    // spotName: the spot to be posted about, not null when passed from SpotScreen
+    const fri = route.params ? route.params["fri"] : [];
+    const friends = fri ? fri : [];
+
+    const [searchText, setSearchText] = useState(route.params ? route.params.spotName : "");
     const [clicked, setClicked] = useState(false);
     const [star, setStar] = useState(0);
     const [comment, setComment] = useState("");
-
-    // selected friends to notify, passed from SelectScreen
-    const fri = route.params ? route.params.fri : [];
 
     return (
         <SafeAreaView style={styles.container}>
@@ -51,10 +53,14 @@ const PostScreen = ({ navigation, route }) => {
                     value={comment}
                 />
 
+                <View style={styles.imgContainer}>
+                    <ImageBox />
+                </View>
+
                 <AtFriends
                     title="Notify Friends"
-                    names={fri}
-                    onPress={() => navigation.navigate("Select", { preScreen: 'Post', fri })}
+                    names={friends}
+                    onPress={() => navigation.navigate("Select", { preScreen: 'Post', fri:friends })}
                 />
 
             </ScrollView>
@@ -99,5 +105,12 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: '600',
         fontSize: 20,
-    }
+    },
+    imgContainer: {
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+
+        paddingVertical: pxToDp(24),
+    },
 })

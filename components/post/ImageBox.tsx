@@ -1,11 +1,17 @@
-import { StyleSheet, ScrollView, TouchableOpacity, View, Text, Image, Alert, Pressable } from 'react-native';
+import { StyleSheet, View, Image, Pressable } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
+import pxToDp from '../../functions/pxToDp';
+import img_load from '../../functions/img_load';
 
 const ImageBox = props => {
-    const img = props.img ? props.img : '../../assets/plus.png';
+    const img = img_load['../../aassets/' + props.img]
 
     return (
-        <View style={styles.container}>
-            <Image style={styles.img} source={require('../../assets/plus.png')} />
+        <View>
+            {img
+                ? <Image style={styles.img} source={img} />
+                : <AntDesign name="plussquare" size={pxToDp(90)} color="#E4E4E4" />
+            }
         </View>
     )
 }
@@ -13,12 +19,11 @@ const ImageBox = props => {
 export default ImageBox;
 
 const styles = StyleSheet.create({
-    container: {
-        width: 50,
-        height: 50,
-        backgroundColor: 'gray',
-    },
     img: {
-        flex: 1,
+        width: pxToDp(90),
+        height: pxToDp(90),
+        resizeMode: 'stretch',
+        borderRadius: pxToDp(3),
+        backgroundColor: '#E4E4E4'
     }
 })

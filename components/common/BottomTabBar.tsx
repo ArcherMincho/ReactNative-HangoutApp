@@ -21,7 +21,7 @@ const BottomTabBar = ({ state, descriptors, navigation }) => {
     const Icons = {
         Calendar: ["far", "calendar"],
         SpotHome: ["fas", "store"],
-        Post: ["fas", "plus"],
+        Add: ["fas", "plus"],
         User: ["far", "circle-user"],
     };
 

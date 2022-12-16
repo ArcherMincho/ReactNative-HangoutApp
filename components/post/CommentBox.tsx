@@ -10,6 +10,7 @@ const CommentBox = props => {
                 value={props.value}
                 placeholder="Let's talk about your experience in this restaurant..."
                 multiline
+                editable
             // numberOfLines={4}
             />
 
@@ -33,18 +34,13 @@ const styles = StyleSheet.create({
         fontSize: pxToDp(18),
         height: pxToDp(150),
     },
-    imgContainer: {
-        padding: 20,
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
-    },
     border :{
         position: 'absolute',
         top: pxToDp(4),
         left: pxToDp(4),
         bottom: pxToDp(-7.5),
         right: pxToDp(-6.5),
+        zIndex: -10,
 
         borderWidth: pxToDp(2.5),
         borderRadius: pxToDp(10),

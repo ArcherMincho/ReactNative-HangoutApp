@@ -12,7 +12,7 @@ const SearchBar = props => {
             />
             <TextInput
                 style={styles.input}
-                placeholder="Search"
+                placeholder={props.placeholder ? props.placeholder : "Search"}
                 value={props.searchText}
                 onChangeText={props.setSearchText}
                 onFocus={() => { props.setClicked(true) }}
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 1,
         shadowRadius: 0,
         shadowColor: '#EFCAD2',
-        shadowOffset: {width: pxToDp(4), height: pxToDp(4)},
+        shadowOffset: { width: pxToDp(4), height: pxToDp(4) },
     },
     input: {
         flex: 1,

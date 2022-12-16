@@ -42,7 +42,7 @@ const Tab = createBottomTabNavigator();
 function BottomTabs() {
     return (
         <Tab.Navigator
-            initialRouteName="Post"
+            initialRouteName="SpotHome"
             tabBar={props => <BottomTabBar {...props} />}
             screenOptions={{ headerShown: false }}
         // If to set up icons corresponding to specific tabs here:
@@ -72,7 +72,7 @@ function BottomTabs() {
         >
             <Tab.Screen name="Calendar" component={AgendaScreen} />
             <Tab.Screen name="SpotHome" component={HomeScreen} />
-            <Tab.Screen name="Post" component={PostScreen} />
+            <Tab.Screen name="Add" component={ExpandableCalendarScreen} />
             <Tab.Screen name="User" component={UserScreen} />
         </Tab.Navigator>
     );
@@ -90,6 +90,7 @@ const App = () => {
                     are screens those don't want the tab bar shown. */}
                     <Stack.Screen name="Home" component={BottomTabs} />
                     <Stack.Screen name="Spot" component={SpotScreen} />
+                    <Stack.Screen name="Post" component={PostScreen} />
                     <Stack.Screen name="Select" component={SelectScreen} />
                 </Stack.Navigator>
             </NavigationContainer>
