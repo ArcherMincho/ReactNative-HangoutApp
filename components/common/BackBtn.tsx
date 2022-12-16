@@ -2,8 +2,6 @@ import { StyleSheet, TouchableOpacity, Image } from 'react-native';
 import pxToDp from "../../functions/pxToDp";
 
 
-const size=pxToDp(23);
-
 const BackBtn = props => {
     return (
         <TouchableOpacity 

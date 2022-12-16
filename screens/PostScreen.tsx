@@ -1,70 +1,64 @@
-import { StyleSheet, ScrollView, TouchableOpacity, View, Text, Image, Alert, Pressable } from 'react-native';
-import { useState, useEffect, useLayoutEffect } from 'react';
+import { StyleSheet, ScrollView, View, Text, Pressable } from 'react-native';
+import { useState } from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import pxToDp from '../functions/pxToDp';
 
 import HeaderBar from '../components/common/HeaderBar';
-import SingleBtn from '../components/common/SingleBtn';
-import SelectSpot from '../components/SelectSpot';
-import StarRating from '../components/StarRating';
-import CommentBox from '../components/CommentBox';
-import AtFriends from '../components/common/AtFriends';
+import BackBtn from '../components/common/BackBtn';
+import PostBtn from '../components/post/PostBtn';
+import SearchBar from '../components/common/SearchBar';
 
+import MyStarRating from '../components/post/MyStarRating';
+import CommentBox from '../components/post/CommentBox';
+import AtFriends from '../components/post/AtFriends';
 
-let SpotData = [
-    { key: 'OiShi', value: 'OiShi' },
-    { key: 'District One', value: 'District One' },
-    { key: 'L\'s', value: 'L\'s' },
-]
+const PostScreen = ({ navigation, route }) => {
+    const [searchText, setSearchText] = useState("");
+    const [clicked, setClicked] = useState(false);
+    const [star, setStar] = useState(0);
+    const [comment, setComment] = useState("");
 
-let FriendData = [
-    { key: 'Amy Brown', value: 'Amy Brown' },
-    { key: 'Alex Ericsson', value: 'Alex Ericsson' },
-    { key: 'Nick Nguyen', value: 'Nick Nguyen' },
-    { key: 'Bob Valleberg', value: 'Bob Valleberg' },
-    { key: 'Yining Li', value: 'Yining Li' },
-]
-
-let names = [];
-FriendData.map(i => {
-    names.push(i.key);
-});
-
-const PostScreen = ({ navigation }) => {
-    const [text, onChangeText] = useState('place holder..');
-    const [friends, SelectFriends] = useState(names);
-
-    useLayoutEffect(() => {
-        navigation.setOptions({
-            title: '',
-            headerLeft: () => (
-                <SingleBtn name="chevron-left" onPress={() => navigation.navigate('Spot')} />
-            ),
-            headerRight: () => (
-                <Pressable style={styles.postBtn} onPress={() => alert("post it")}>
-                    <Text style={styles.postBtnText}>Post</Text>
-                </Pressable>
-            ),
-        })
-    }, [navigation]);
+    // selected friends to notify, passed from SelectScreen
+    const fri = route.params ? route.params.fri : [];
 
     return (
-        <View style={styles.container}>
-            <SelectSpot data={SpotData} />
-
-            <StarRating />
-
-            <CommentBox
-                onChangeText={text => onChangeText(text)}
-                value={text}
+        <SafeAreaView style={styles.container}>
+            <HeaderBar
+                left={
+                    <BackBtn onPress={() => navigation.navigate('SpotHome')} />}
+                right={
+                    <PostBtn onPress={() => navigation.navigate('Post')} />
+                }
             />
 
-            <AtFriends
-                title="@ people"
-                names={friends}
-                onPress={()=>{alert(friends)}}
-            />
+            <ScrollView style={styles.contentContainer}>
+                <View style={styles.searchContainer}>
+                    <Text style={styles.searchLabel}>Restaurant</Text>
+                    <View style={styles.search}>
+                        <SearchBar
+                            searchText={searchText}
+                            setSearchText={setSearchText}
+                            clicked={clicked}
+                            setClicked={setClicked}
+                        />
+                    </View>
+                </View>
 
+                <MyStarRating star={star} setStar={setStar} />
 
-        </View>
+                <CommentBox
+                    onChangeText={setComment}
+                    value={comment}
+                />
+
+                <AtFriends
+                    title="Notify Friends"
+                    names={fri}
+                    onPress={() => navigation.navigate("Select", { preScreen: 'Post', fri })}
+                />
+
+            </ScrollView>
+        </SafeAreaView>
     )
 }
 
@@ -72,7 +66,25 @@ export default PostScreen;
 
 const styles = StyleSheet.create({
     container: {
-
+        justifyContent: 'flex-start',
+        backgroundColor: '#fff',
+        flex: 1,
+    },
+    contentContainer: {
+        paddingHorizontal: pxToDp(31),
+        flex: 1, // to let ScrollView auto fills the space, its container should also set flex
+    },
+    searchContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    searchLabel: {
+        fontSize: pxToDp(20),
+        fontWeight: '400',
+    },
+    search: {
+        width: pxToDp(208),
     },
     postBtn: {
         width: 50,

@@ -42,7 +42,7 @@ const Tab = createBottomTabNavigator();
 function BottomTabs() {
     return (
         <Tab.Navigator
-            initialRouteName="SpotHome"
+            initialRouteName="Post"
             tabBar={props => <BottomTabBar {...props} />}
             screenOptions={{ headerShown: false }}
         // If to set up icons corresponding to specific tabs here:

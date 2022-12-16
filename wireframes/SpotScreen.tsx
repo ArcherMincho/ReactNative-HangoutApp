@@ -3,7 +3,7 @@ import React, { useState, useEffect, useLayoutEffect } from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 import HeaderBar from '../components/common/HeaderBar';
-import SingleBtn from '../components/common/SingleBtn';
+import SingleBtn from '../components/cancelled/SingleBtn';
 import SpotOpBtn from '../components/spots/SpotOpBtn';
 import SpotItem from '../components/cancelled/SpotItem';
 import SpotPost from '../components/spots/SpotPost';

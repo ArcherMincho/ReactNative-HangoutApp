@@ -5,7 +5,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import pxToDp from '../functions/pxToDp';
 
 import HeaderBar from '../components/common/HeaderBar';
-import FilterBar from '../components/FilterBar';
+import FilterBar from '../components/spots/FilterBar';
 import SpotItem from '../components/spots/SpotItem';
 import SearchBar from '../components/common/SearchBar';
 
@@ -67,7 +67,7 @@ const HomeScreen = ({ navigation, route }) => {
     const [searchText, setSearchText] = useState("");
     const [clicked, setClicked] = useState(false);
 
-    // selected friends for filtering from SelectScreen
+    // selected friends for filtering, passed from SelectScreen
     const fri = route.params ? route.params.fri : [];
 
     const navigateTo = (spot) => {
@@ -106,7 +106,7 @@ const HomeScreen = ({ navigation, route }) => {
                     </View>
                 }
                 right={
-                    <Pressable onPress={() => navigation.navigate('Spot')}>
+                    <Pressable>
                         <FontAwesome5 name="comment-alt" size={pxToDp(26)} color={'black'} />
                     </Pressable>
                 }
@@ -122,7 +122,7 @@ const HomeScreen = ({ navigation, route }) => {
 
                 <FilterBar
                     filterText={fri && fri[0]}
-                    onPress={() => navigation.navigate("Select", { fri })}
+                    onPress={() => navigation.navigate("Select", { preScreen:'SpotHome', fri })}
                 />
 
                 <View style={{ width: '100%' }}>

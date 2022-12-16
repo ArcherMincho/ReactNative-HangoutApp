@@ -24,19 +24,19 @@ const SelectScreen = ({ navigation, route }) => {
     const [clicked, setClicked] = useState(false);
 
     // selected friends preserved from last time, passed by HomeScreen
-    const { fri } = route.params;
+    const { preScreen, fri } = route.params;
     const [friends, setFriends] = useState(fri);
 
     const handleSelectedChange = (name, status) => {
         let f = friends.slice();
         if (status) {
             f.push(name);
-            console.log("after adding: " + f);
+            // console.log("after adding: " + f);
         } else {
             const i = f.indexOf(name);
-            console.log("delete: " + f[i]);
+            // console.log("delete: " + f[i]);
             f.splice(i, 1);
-            console.log("after deleting: " + f);
+            // console.log("after deleting: " + f);
         }
         setFriends(f);
     }
@@ -51,7 +51,7 @@ const SelectScreen = ({ navigation, route }) => {
                     </View>
                 }
                 leftFixed={
-                    <BackBtn onPress={() => navigation.navigate('SpotHome',
+                    <BackBtn onPress={() => navigation.navigate(preScreen,
                         { fri: fri })} // return the original, passed-in selected friends
                     />
                 }
@@ -82,7 +82,7 @@ const SelectScreen = ({ navigation, route }) => {
             <View style={styles.bottomBtnContainer}>
                 <Pressable
                     style={styles.bottomBtn}
-                    onPress={() => navigation.navigate('SpotHome',
+                    onPress={() => navigation.navigate(preScreen,
                         { fri: friends.slice() } // return current selected friends
                     )}
                 >

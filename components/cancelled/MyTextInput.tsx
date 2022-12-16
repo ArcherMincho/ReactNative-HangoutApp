@@ -4,7 +4,7 @@ const MyTextInput = props => {
     return (
         <View style={styles.container}>
             <TextInput
-                style={styles.textInput}
+                style={styles.input}
                 {...props}
                 editable
             />
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     container: {
 
     },
-    textInput: {
+    input: {
         padding: 0,
         height: '30%',
         textAlignVertical: 'top',

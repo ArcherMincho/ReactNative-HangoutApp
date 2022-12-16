@@ -13,7 +13,6 @@ const SelectItem = props => {
         const status = !selected;
         setSelected(status);
         onSelectedChange(item.name, status);
-        console.log(item.name + status)
     }
 
     return (

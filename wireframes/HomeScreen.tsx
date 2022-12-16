@@ -3,8 +3,8 @@ import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 
 import HeaderBar from '../components/common/HeaderBar';
-import FilterBar from '../components/FilterBar';
-import Dropdown from '../components/common/Dropdown';
+import FilterBar from '../components/spots/FilterBar';
+import Dropdown from '../components/cancelled/Dropdown';
 import SpotItem from '../components/cancelled/SpotItem';
 
 const locationData = [

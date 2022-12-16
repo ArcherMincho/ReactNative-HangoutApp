@@ -2,11 +2,11 @@ import { StyleSheet, ScrollView, TouchableOpacity, View, Text, Image, Alert, Pre
 import { useState, useEffect, useLayoutEffect } from 'react';
 
 import HeaderBar from '../components/common/HeaderBar';
-import SingleBtn from '../components/common/SingleBtn';
-import SelectSpot from '../components/SelectSpot';
-import StarRating from '../components/StarRating';
-import CommentBox from '../components/CommentBox';
-import AtFriends from '../components/common/AtFriends';
+import SingleBtn from '../components/cancelled/SingleBtn';
+import SelectSpot from '../components/cancelled/SelectSpot';
+import StarRating from '../components/post/MyStarRating';
+import CommentBox from '../components/post/CommentBox';
+import AtFriends from '../components/post/AtFriends';
 
 
 let SpotData = [

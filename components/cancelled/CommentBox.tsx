@@ -1,7 +1,7 @@
 import { StyleSheet, ScrollView, TouchableOpacity, View, Text, Image, Alert, Pressable } from 'react-native';
 
-import MyTextInput from './common/MyTextInput';
-import ImageBox from './common/ImageBox';
+import MyTextInput from './MyTextInput';
+import ImageBox from '../post/ImageBox';
 
 const CommentBox = props => {
     return (

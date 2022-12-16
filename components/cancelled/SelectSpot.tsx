@@ -1,5 +1,5 @@
 import { StyleSheet, View, Text } from 'react-native';
-import Dropdown from '../components/common/Dropdown';
+import Dropdown from './Dropdown';
 
 const SelectSpot = props => {
     return (

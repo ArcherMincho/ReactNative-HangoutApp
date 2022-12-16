@@ -19,15 +19,13 @@ const PostComment = props => {
     return (
         <View style={styles.container}>
             <View style={styles.likedContainer}>
-                <Text>
+                <Text style={styles.heavyText}>
                     <FontAwesome5 name="heart" size={pxToDp(15)} color="black" />
                     <Text>  </Text>
-                    {likes && likes.map(i => {
-                        return (
-                            <Text key={i} style={styles.heavyText}>{i}, </Text>
-                        )
-                    })}
-                    <Text style={styles.heavyText}>{last}</Text>
+                    {likes && likes.map(i =>
+                        <Text key={i}>{i}, </Text>
+                    )}
+                    <Text>{last}</Text>
                 </Text>
             </View>
 

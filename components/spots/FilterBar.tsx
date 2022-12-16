@@ -1,6 +1,6 @@
 import { StyleSheet, View, Text, Pressable } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
-import pxToDp from '../functions/pxToDp';
+import pxToDp from '../../functions/pxToDp';
 
 const FilterBar = props => {
     const { onPress, filterText } = props;

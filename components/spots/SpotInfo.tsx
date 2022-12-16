@@ -1,6 +1,6 @@
 import { StyleSheet, ScrollView, TouchableOpacity, View, Text, Image, Alert, Pressable } from 'react-native';
 import pxToDp from '../../functions/pxToDp';
-import StaticRatingStar from '../common/StaticRatingStar';
+import StaticRatingStar from './StaticRatingStar';
 
 const SpotInfo = props => {
     const fontColor = props.fontColor || 'white';

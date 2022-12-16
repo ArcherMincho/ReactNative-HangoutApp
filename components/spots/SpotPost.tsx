@@ -3,7 +3,7 @@ import { useState, useEffect, useLayoutEffect } from 'react';
 import pxToDp from '../../functions/pxToDp';
 import img_load from '../../functions/img_load';
 
-import StaticRatingStar from '../common/StaticRatingStar';
+import StaticRatingStar from './StaticRatingStar';
 import PostPics from './PostPics';
 import PostSocialOp from './PostSocialOp';
 import PostComment from './PostComment';
