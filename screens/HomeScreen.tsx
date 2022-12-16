@@ -121,6 +121,7 @@ const HomeScreen = ({ navigation, route }) => {
                 />
 
                 <FilterBar
+                    filterText={fri && fri[0]}
                     onPress={() => navigation.navigate("Select", { fri })}
                 />
 

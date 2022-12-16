@@ -2,7 +2,8 @@ import { StyleSheet, View, Text, Pressable } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 import pxToDp from '../functions/pxToDp';
 
-const FilterBar = ({ onPress }) => {
+const FilterBar = props => {
+    const { onPress, filterText } = props;
     return (
         <View style={[styles.container]}>
             <Pressable
@@ -12,7 +13,9 @@ const FilterBar = ({ onPress }) => {
                 {({ pressed }) => {
                     return (
                         <Text style={[styles.text, pressed && styles.onPressedText]}>
-                            Friends
+                            Friends{filterText &&
+                                <Text>: {filterText.slice(0, filterText.indexOf(' '))}...</Text>
+                            }
                         </Text>
                     )
                 }}
