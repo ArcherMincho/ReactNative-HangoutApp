@@ -3,9 +3,16 @@ export default {
     png1: require('../assets/1.png'),
     png2: require('../assets/2.png'),
     png3: require('../assets/3.png'),
+
     portrait0: require('../assets/people/0.png'),
     portrait1: require('../assets/people/1.png'),
     portrait2: require('../assets/people/2.png'),
+    portrait3: require('../assets/people/3.png'),
+    portrait4: require('../assets/people/4.png'),
+    portrait5: require('../assets/people/5.png'),
+    portrait6: require('../assets/people/6.png'),
+    portrait7: require('../assets/people/7.png'),
+
     photo00: require('../assets/commentPhotos/0/0.png'),
     photo01: require('../assets/commentPhotos/0/1.png'),
     photo02: require('../assets/commentPhotos/0/2.png'),

@@ -1,23 +1,39 @@
-import { StyleSheet, ScrollView, TouchableOpacity, View, Text, Image, Alert, Pressable } from 'react-native';
+import { StyleSheet, View, Text, Pressable } from 'react-native';
+import { Entypo } from '@expo/vector-icons';
 import pxToDp from '../functions/pxToDp';
-import Dropdown from './common/Dropdown';
-import MultiDropdown from './common/MultiDropdown';
 
-const FilterBar = props => {
+const FilterBar = ({ onPress }) => {
     return (
-        <View style={[styles.container, props.myStyle]}>
-            <MultiDropdown
-                data={props.friendData}
-                setSelected={props.setFriends}
-                // defaultOption={props.defaultFriends}
-                label="Friend"
-            />
-            <MultiDropdown
-                data={props.filterData}
-                setSelected={props.setFilters}
-                defaultOption={props.defaultFilters}
-                label="Sort By"
-            />
+        <View style={[styles.container]}>
+            <Pressable
+                onPress={onPress}
+                style={({ pressed }) =>
+                    [styles.btn, pressed && styles.onPressedBorder]}>
+                {({ pressed }) => {
+                    return (
+                        <Text style={[styles.text, pressed && styles.onPressedText]}>
+                            Friends
+                        </Text>
+                    )
+                }}
+            </Pressable>
+
+            <Pressable
+                onPress={onPress}
+                style={({ pressed }) =>
+                    [styles.btn, pressed && styles.onPressedBorder]}>
+                {({ pressed }) => {
+                    return (
+                        <View style={styles.flexRowContainer}>
+                            <Text style={[styles.text, pressed && styles.onPressedText]}>
+                                Sort by
+                            </Text>
+                            <Entypo name="chevron-small-down" size={pxToDp(24)} color="black" />
+                        </View>
+
+                    )
+                }}
+            </Pressable>
         </View>
     )
 }
@@ -28,15 +44,33 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
-        marginBottom: pxToDp(10),
-
-        // // for IOS
-        // shadowColor: '#555',
-        // shadowOffset: { width: 0, height: 1 },
-        // shadowOpacity: .3,
-        // shadowRadius: 1.5,
-        // // for Android
-        // elevation: 1.5,
+        justifyContent: 'flex-start',
+        marginTop: pxToDp(18),
+        marginBottom: pxToDp(15),
     },
+    btn: {
+        justifyContent: 'center',
+        height: pxToDp(32),
+        paddingHorizontal: pxToDp(22),
+        marginRight: pxToDp(19),
+
+        borderWidth: pxToDp(1.5),
+        borderRadius: pxToDp(10),
+        borderColor: "black",
+    },
+    onPressedBorder: {
+        borderColor: '#F1B94C',
+    },
+    onPressedText: {
+        color: '#F1B94C',
+    },
+    text: {
+        fontSize: pxToDp(13.5),
+        fontWeight: '500',
+    },
+    flexRowContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
 })

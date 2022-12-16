@@ -12,6 +12,7 @@ library.add(fas);
 
 import BottomTabBar from './components/common/BottomTabBar';
 import HomeScreen from './screens/HomeScreen';
+import SelectScreen from './screens/SelectScreen';
 import SpotScreen from './screens/SpotScreen';
 import PostScreen from './screens/PostScreen';
 import UserScreen from './screens/UserScreen';
@@ -82,13 +83,14 @@ const App = () => {
     return (
         <SafeAreaProvider>
             <NavigationContainer>
-                <Stack.Navigator screenOptions={{ headerShown: false }}>
+                <Stack.Navigator initialRouteName='Home' screenOptions={{ headerShown: false }}>
                     {/* To show the tab bar only on the Home, Post, and User Screens,
                     encapsulate them into one tab navigator (i.e., BottomTabs),
                     and use it as a "screen" in a stack navigator, of which brother elements
                     are screens those don't want the tab bar shown. */}
                     <Stack.Screen name="Home" component={BottomTabs} />
                     <Stack.Screen name="Spot" component={SpotScreen} />
+                    <Stack.Screen name="Select" component={SelectScreen} />
                 </Stack.Navigator>
             </NavigationContainer>
         </SafeAreaProvider>

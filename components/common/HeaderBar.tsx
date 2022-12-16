@@ -1,15 +1,31 @@
-import { StyleSheet, ScrollView, TouchableOpacity, View, Text, Image, Alert } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import pxToDp from '../../functions/pxToDp';
 
 const HeaderBar = props => {
     return (
-        <View style={styles.container}>
-            <View style={styles.left}>
-                {props.left}
-            </View>
-            <View style={styles.right}>
-                {props.right}
-            </View>
+        <View style={[
+            styles.container,
+            props.center && styles.centered
+        ]}>
+            {props.leftFixed && (
+                <View style={styles.leftFixed}>
+                    {props.leftFixed}
+                </View>
+            )}
+            {props.left && (
+                <View>{props.left}</View>
+            )}
+            {props.center && (
+                <View>{props.center}</View>
+            )}
+            {props.right && (
+                <View>{props.right}</View>
+            )}
+            {props.rightFixed && (
+                <View style={styles.rightFixed}>
+                    {props.rightFixed}
+                </View>
+            )}
         </View>
     )
 }
@@ -18,28 +34,25 @@ export default HeaderBar;
 
 const styles = StyleSheet.create({
     container: {
-        width: '100%',
-        paddingHorizontal: pxToDp(31),
-        paddingVertical: pxToDp(15),
+        position: 'relative',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+
+        width: '100%',
+        paddingHorizontal: pxToDp(31),
+        paddingVertical: pxToDp(15),
         marginBottom: pxToDp(5),
-
-
-        // // for IOS
-        // shadowColor: '#555',
-        // shadowOffset: { width: 0, height: 1 },
-        // shadowOpacity: .3,
-        // shadowRadius: 1.5,
-        // // for Android
-        // elevation: 1.5,
     },
-    left: {
-        // marginLeft: '5%',
-
+    centered: {
+        justifyContent: 'center',
     },
-    right: {
-        // marginRight: '5%',
-    }
+    leftFixed: {
+        position: 'absolute',
+        left: pxToDp(31),
+    },
+    rightFixed: {
+        position: 'absolute',
+        right: pxToDp(31),
+    },
 })

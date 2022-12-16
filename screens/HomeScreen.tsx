@@ -6,31 +6,17 @@ import pxToDp from '../functions/pxToDp';
 
 import HeaderBar from '../components/common/HeaderBar';
 import FilterBar from '../components/FilterBar';
-import Dropdown from '../components/common/Dropdown';
 import SpotItem from '../components/spots/SpotItem';
 import SearchBar from '../components/common/SearchBar';
 
-const locationData = [
-    { key: 'Sweden', value: 'Sweden', disabled: true },
-    { key: 'Gothenburg', value: 'Gothenburg' },
-    { key: 'Stockholm', value: 'Stockholm' },
-    { key: 'Marmo', value: 'Marmo' },
-]
 
-const friendData = [
-    { key: 'Alex', value: 'Alex' },
-    { key: 'Echo', value: 'Echo' },
-    { key: 'Jennifer', value: 'Jennifer' },
-    { key: 'Yiqian', value: 'Yiqian' },
-]
+// const filterData = [
+//     { key: 'Nearest', value: 'Nearest' },
+//     { key: 'Oldest', value: 'Oldest' },
+//     { key: 'Hot', value: 'Hot' },
+// ]
 
-const filterData = [
-    { key: 'Nearest', value: 'Nearest' },
-    { key: 'Oldest', value: 'Oldest' },
-    { key: 'Hot', value: 'Hot' },
-]
-
-const Spots = [
+const SpotData = [
     {
         name: 'Big Bird',
         star: 4.5,
@@ -76,14 +62,15 @@ const Spots = [
 
 ]
 
-const HomeScreen = ({ navigation }) => {
-    const [location, setLocation] = useState("");
-    const [friends, setFriends] = useState([]);
-    const [filters, setFilters] = useState([]);
+const HomeScreen = ({ navigation, route }) => {
+    // const [filters, setFilters] = useState([]);
     const [searchText, setSearchText] = useState("");
     const [clicked, setClicked] = useState(false);
 
-    function navigateTo(spot) {
+    // selected friends for filtering from SelectScreen
+    const fri = route.params ? route.params.fri : [];
+
+    const navigateTo = (spot) => {
         navigation.navigate("Spot", { spot });
     }
 
@@ -117,16 +104,10 @@ const HomeScreen = ({ navigation }) => {
                     <View>
                         <Text style={styles.headerText}>Gothenburg</Text>
                     </View>
-                    // <Dropdown
-                    //     data={locationData}
-                    //     setSelected={setLocation}
-                    //     search={false}
-                    //     defaultOption={locationData[1]}
-                    // />
                 }
                 right={
                     <Pressable onPress={() => navigation.navigate('Spot')}>
-                        <FontAwesome5 name="user-circle" size={pxToDp(27)} color={'black'} />
+                        <FontAwesome5 name="comment-alt" size={pxToDp(26)} color={'black'} />
                     </Pressable>
                 }
             />
@@ -140,16 +121,11 @@ const HomeScreen = ({ navigation }) => {
                 />
 
                 <FilterBar
-                    myStyle={styles.filterContainer}
-                    friendData={friendData}
-                    setFriends={setFriends}
-                    filterData={filterData}
-                    setFilters={setFilters}
-                    defaultFilters={filters}
+                    onPress={() => navigation.navigate("Select", { fri })}
                 />
 
                 <View style={{ width: '100%' }}>
-                    {Spots.map(i => {
+                    {SpotData.map(i => {
                         return (
                             <SpotItem key={i.name} spot={i} onPress={navigateTo} />
                         )
