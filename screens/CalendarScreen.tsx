@@ -6,14 +6,72 @@ import pxToDp from '../functions/pxToDp';
 
 import HeaderBar from '../components/common/HeaderBar';
 import WeekCalendar from '../components/calendar/WeekCalendar';
+import EventList from '../components/calendar/EventList';
+
+const eventData = {
+    '2022-12-12': [
+        {
+            name: "Hing Wa",
+            time: '14:00 ~ 16:00',
+            past: true,
+            people: ["Joakim Gustafsson"]
+        },
+    ],
+    '2022-12-14': [
+        {
+            name: "Egg & Milk",
+            time: '9:30 ~ 12:00',
+            past: true,
+            people: ["Dennis Denito", "Jan Bjork"]
+        },
+        {
+            name: "Hing Wa",
+            time: '14:00 ~ 16:00',
+            past: true,
+            people: ["Joakim Gustafsson"]
+        },
+    ],
+    '2022-12-17': [
+        {
+            name: "Egg & Milk",
+            time: '9:30 ~ 12:00',
+            past: true,
+            people: ["Dennis Denito", "Jan Bjork"]
+        },
+        {
+            name: "Hing Wa",
+            time: '14:00 ~ 16:00',
+            past: false,
+            people: ["Joakim Gustafsson"]
+        },
+        {
+            name: "Sing Sing",
+            time: '18:00 ~ 22:00',
+            past: false,
+            people: ["Joakim Gustafsson", "Yining Li", "Tahiko Matsui"]
+        },
+    ],
+    '2022-12-18': [
+        {
+            name: "Egg & Milk",
+            time: '9:30 ~ 12:00',
+            past: false,
+            people: ["Dennis Denito", "Jan Bjork"]
+        },
+    ],
+};
 
 const CalendarScreen = ({ navigation }) => {
 
-    // const [selected, setSelected] = useState('');
-    // const [dotted, setDotted] = useState({'2022-12-01':2, '2022-12-12':1, '2022-12-22':4, '2022-12-25':5});
+    const [curYMD, setCurYMD] = useState("");
 
-
-
+    const countEvents = () => {
+        const obj = {};
+        for (const key in eventData) {
+            obj[key] = eventData[key].length;
+        }
+        return obj;
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -31,14 +89,20 @@ const CalendarScreen = ({ navigation }) => {
             />
 
             <View style={styles.contentContainer}>
-                <WeekCalendar />
+                <WeekCalendar
+                    curYMD={curYMD}
+                    setCurYMD={setCurYMD}
+                    eventNums={countEvents()}
+                />
+
+                <ScrollView style={styles.eventContainer}>
+                    <EventList events={eventData[curYMD]} isPast={true} />
+                    <EventList events={eventData[curYMD]} isPast={false} />
+                </ScrollView>
 
                 {/* for decoration */}
                 <View style={styles.border} />
             </View>
-
-
-
         </SafeAreaView>
     );
 }
@@ -60,6 +124,9 @@ const styles = StyleSheet.create({
     headerText: {
         fontSize: pxToDp(32),
         fontWeight: '800',
+    },
+    eventContainer: {
+        paddingHorizontal: pxToDp(16),
     },
     border: {
         position: 'absolute',

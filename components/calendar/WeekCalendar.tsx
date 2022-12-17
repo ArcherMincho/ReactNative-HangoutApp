@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, Pressable } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { useState, useEffect } from 'react';
 import pxToDp from '../../functions/pxToDp';
 
@@ -8,36 +8,18 @@ import WeekDateItem from './WeekDateItem';
 const Week = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 const Month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 
-const markedStyle = {
-    marked: true,
-    dotColor: '#aa2222',
-};
-
-const selectedStyle = {
-    selected: true,
-    selectedColor: '#222222',
-    selectedTextColor: 'yellow',
-    dotColor: 'white',
-};
-
-
-const eventDots = [
-    { key: '1', color: 'blue' },
-    { key: '2', color: 'orange' },
-    { key: '3', color: 'green' },
-];
-
 const WeekCalendar = props => {
     const [curList, setCurList] = useState([]);
+    const [curListIndex, setCurListIndex] = useState(0);
     const [curMonth, setCurMonth] = useState(0);
     const [curDate, setCurDate] = useState(0);
-    const [curListIndex, setCurListIndex] = useState(0);
+
+    const { curYMD, setCurYMD, eventNums } = props;
+
 
     // init date
     useEffect(() => {
         const raw = new Date();
-        // const year = raw.getFullYear();
-        const month = raw.getMonth() + 1;
         const date = raw.getDate();
         const day = raw.getDay();
         setCurDate(date);
@@ -54,7 +36,8 @@ const WeekCalendar = props => {
         const year = needed.getFullYear();
         const month = needed.getMonth() + 1;
         const date = needed.getDate();
-        return { year, month, date };
+        const YMD = `${year}-${month}-${date}`;
+        return { year, month, date, YMD };
     }
 
     // get a list of date information of seven days of a week
@@ -67,30 +50,36 @@ const WeekCalendar = props => {
         setCurMonth(list[0].month);
     }
 
-    const getToday = () => {
-        const raw = new Date();
-        return raw.getDate();
-    }
-    const today = getToday();
-
     const changeWeek = (weekNum) => {
         const raw = new Date();
         getTimeList(-(raw.getDay()) + (7 * weekNum));
     }
 
     const handlePrevClicked = () => {
-        setCurListIndex(curListIndex - 1);
-        changeWeek(curListIndex);
+        const index = curListIndex - 1;
+        setCurListIndex(index);
+        changeWeek(index);
     }
 
     const handleNextClicked = () => {
-        setCurListIndex(curListIndex + 1);
-        changeWeek(curListIndex);
+        const index = curListIndex + 1;
+        setCurListIndex(index);
+        changeWeek(index);
     }
 
     const handleDateSelected = (item) => {
         setCurDate(item.date);
+        setCurYMD(item.YMD);
     }
+
+    const getToday = () => {
+        const raw = new Date();
+        const date = raw.getDate();
+        const month = raw.getMonth() + 1;
+        const year = raw.getFullYear();
+        return `${year}-${month}-${date}`;
+    }
+    const today = getToday();
 
     // format months or dates that have only one digit
     const format = (num) => {
@@ -125,10 +114,10 @@ const WeekCalendar = props => {
                         <WeekDateItem
                             key={d.date + d.year}
                             date={d.date}
-                            isToday={d.date === today} // if today's date is the current selected date
-                            current={d.date === curDate} // current selected date
+                            isToday={d.YMD === today} // if today's date is the current selected date
+                            current={d.YMD === curYMD} // current selected date
                             day={Week[i]}
-                            dots={2}
+                            dots={eventNums[d.YMD]}
                             onPress={() => handleDateSelected(d)}
                         />
                     )
