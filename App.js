@@ -6,7 +6,6 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
-import { far } from '@fortawesome/free-regular-svg-icons';
 
 library.add(fas);
 
@@ -42,7 +41,7 @@ const Tab = createBottomTabNavigator();
 function BottomTabs() {
     return (
         <Tab.Navigator
-            initialRouteName="SpotHome"
+            initialRouteName="Calendar"
             tabBar={props => <BottomTabBar {...props} />}
             screenOptions={{ headerShown: false }}
         // If to set up icons corresponding to specific tabs here:
@@ -70,7 +69,7 @@ function BottomTabs() {
         //     tabBarShowLabel: false,
         // })}
         >
-            <Tab.Screen name="Calendar" component={AgendaScreen} />
+            <Tab.Screen name="Calendar" component={CalendarScreen} />
             <Tab.Screen name="SpotHome" component={HomeScreen} />
             <Tab.Screen name="Add" component={ExpandableCalendarScreen} />
             <Tab.Screen name="User" component={UserScreen} />

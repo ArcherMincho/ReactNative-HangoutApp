@@ -1,6 +1,7 @@
 import { StyleSheet, View, Text, Pressable } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 import pxToDp from '../../functions/pxToDp';
+import SingleBtn from '../common/SingleBtn';
 
 const AtFriends = props => {
     let names = props.names.slice();
@@ -17,18 +18,7 @@ const AtFriends = props => {
                 <Text>{last}</Text>
             </Text>
 
-            <Pressable onPress={props.onPress} style={styles.btn} >
-                {({ pressed }) => {
-                    const color = pressed ? '#F1B94C' : 'black';
-                    return (
-                        <Entypo 
-                        name="chevron-right" 
-                        size={pxToDp(24)} 
-                        color={color} 
-                        />
-                    )
-                }}
-            </Pressable>
+            <SingleBtn onPress={props.onPress} myStyle={styles.btn} />
 
         </View>
     );

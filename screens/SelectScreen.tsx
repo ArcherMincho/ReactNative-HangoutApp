@@ -117,6 +117,8 @@ const styles = StyleSheet.create({
         bottom: pxToDp(65),
         width: '100%',
         paddingVertical: pxToDp(15),
+        borderColor: '#E4E4E4',
+        borderTopWidth: pxToDp(1),
         backgroundColor: 'white',
         zIndex: 10,
         elevation: 10,

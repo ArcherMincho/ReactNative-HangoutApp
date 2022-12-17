@@ -8,10 +8,6 @@ library.add(fas);
 library.add(far);
 
 
-import HomeScreen from '../../screens/HomeScreen';
-import PostScreen from '../../screens/PostScreen';
-import SpotScreen from '../../screens/SpotScreen';
-
 const Tab = createBottomTabNavigator();
 
 const BottomTabs = props => {
