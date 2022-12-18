@@ -43,7 +43,7 @@ const WeekCalendar = props => {
     // get a list of date information of seven days of a week
     const getTimeList = (day) => {
         const list = [];
-        for (let i = day + 1; i <= day + 7; i++) {
+        for (let i = day; i <= day + 6; i++) {
             list.push(getTime(i));
         }
         setCurList(list);
@@ -53,6 +53,8 @@ const WeekCalendar = props => {
     const changeWeek = (weekNum) => {
         const raw = new Date();
         getTimeList(-(raw.getDay()) + (7 * weekNum));
+        setCurDate(0);
+        setCurYMD("");
     }
 
     const handlePrevClicked = () => {
