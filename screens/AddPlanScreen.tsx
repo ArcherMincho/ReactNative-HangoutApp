@@ -1,4 +1,4 @@
-import { StyleSheet, ScrollView, View, Text } from 'react-native';
+import { StyleSheet, ScrollView, View, Text, Pressable } from 'react-native';
 import { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import pxToDp from '../functions/pxToDp';
@@ -8,6 +8,7 @@ import HeaderBar from '../components/common/HeaderBar';
 import InfoInput from '../components/plan/InfoInput';
 import TimeBox from '../components/plan/TimeBox';
 import InviteBox from '../components/plan/InviteBox';
+import MessageBox from '../components/plan/MessageBox';
 
 const AddPlanScreen = ({ navigation, route }) => {
 
@@ -15,6 +16,7 @@ const AddPlanScreen = ({ navigation, route }) => {
     const [date, setDate] = useState("");
     const [start, setStart] = useState("");
     const [end, setEnd] = useState("");
+    const [message, setMessage] = useState("");
 
     // if navigated from SpotScreen
     const preScreen = route.params?.preScreen;
@@ -50,9 +52,25 @@ const AddPlanScreen = ({ navigation, route }) => {
                     />
                     <InviteBox
                         people={fri}
-                        onPress={() => navigation.navigate("Select", { preScreen: 'Add', fri })} />
-
-
+                        onPress={() => navigation.navigate("Select", { preScreen: 'Add', fri })}
+                    />
+                    <MessageBox value={message} onChangeText={setMessage} />
+                    <View style={styles.btnContainer}>
+                        <Pressable
+                            style={({ pressed }) => [styles.btn, pressed && styles.onPressed]}
+                        >
+                            <Text style={styles.btnText}>Add Locally</Text>
+                        </Pressable>
+                        <Pressable
+                            style={({ pressed }) => [
+                                styles.btn,
+                                { backgroundColor: '#F1B94C' },
+                                pressed && styles.onPressed]
+                            }
+                        >
+                            <Text style={styles.btnText}>Invite</Text>
+                        </Pressable>
+                    </View>
                 </ScrollView>
 
                 {/* for decoration */}
@@ -69,6 +87,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
         backgroundColor: '#fff',
+        paddingBottom: pxToDp(200),
     },
     headerText: {
         fontSize: pxToDp(25),
@@ -77,7 +96,6 @@ const styles = StyleSheet.create({
     },
     contentContainer: {
         position: 'relative',
-
         width: pxToDp(328),
         height: pxToDp(638),
 
@@ -102,6 +120,31 @@ const styles = StyleSheet.create({
         width: '100%',
         paddingVertical: pxToDp(32),
         paddingHorizontal: pxToDp(15),
+    },
+    btnContainer: {
+        width: pxToDp(296),
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        alignSelf: 'center',
+        marginBottom: pxToDp(100),
+    },
+    btn: {
+        width: pxToDp(136),
+        height: (40),
+        justifyContent: 'center',
+        alignItems: 'center',
+
+        borderWidth: pxToDp(2),
+        borderRadius: pxToDp(10),
+        borderColor: 'black',
+    },
+    onPressed: {
+        borderColor: '#F1B94C',
+    },
+    btnText: {
+        fontSize: pxToDp(20),
+        fontWeight: '400',
     },
 
 });

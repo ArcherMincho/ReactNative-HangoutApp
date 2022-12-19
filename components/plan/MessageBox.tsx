@@ -2,41 +2,39 @@ import { StyleSheet, View, TextInput, Text } from 'react-native';
 import { useState } from 'react';
 import pxToDp from '../../functions/pxToDp';
 
-const InfoInput = props => {
-    const { title, value, onChangeText } = props;
+const MessageBox = props => {
+    const { value, onChangeText } = props;
     const [focused, setFocused] = useState(false);
 
     return (
         <View style={styles.container}>
             <TextInput
-                style={styles.input}
+                style={styles.inputText}
                 onChangeText={onChangeText}
                 value={value}
-                placeholder={title || "..."}
+                placeholder="Additional Message"
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
+                multiline
             />
-            {props.btn}
             {(focused || (value && value.length > 0)) &&
-                <Text style={styles.title}>{title}</Text>
+                <Text style={styles.title}>Message</Text>
             }
         </View>
     )
 }
 
-export default InfoInput;
+export default MessageBox;
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        alignSelf: 'center',
-
         position: 'relative',
         width: pxToDp(248),
+        height: pxToDp(99),
         paddingVertical: pxToDp(8.5),
-        paddingHorizontal: '5%',
+        paddingHorizontal: pxToDp(22),
+        marginVertical: pxToDp(32),
+        alignSelf: 'center',
 
         borderWidth: pxToDp(2),
         borderColor: 'black',
@@ -48,12 +46,9 @@ const styles = StyleSheet.create({
         shadowColor: '#EFCAD2',
         shadowOffset: { width: pxToDp(4), height: pxToDp(4) },
     },
-    input: {
-        flex: 1,
+    inputText: {
         fontSize: pxToDp(20),
-        fontWeight: '500',
-        marginLeft: '3%',
-        marginRight: '2%',
+        fontWeight: '400',
     },
     title: {
         position: 'absolute',

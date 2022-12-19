@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
         backgroundColor: '#fff',
+        paddingBottom: pxToDp(200),
     },
     contentContainer: {
         position: 'relative',
