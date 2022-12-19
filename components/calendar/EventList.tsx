@@ -17,7 +17,7 @@ const EventList = props => {
             <View style={styles.header}>
                 <Text style={styles.headerText}>{title} Events</Text>
                 {!isPast && (
-                    <Pressable onPress={props.onPress}>
+                    <Pressable onPress={props.onAddPress}>
                         {({ pressed }) => {
                             return (
                                 pressed
@@ -32,6 +32,7 @@ const EventList = props => {
             <View>
                 {events.map(e => (
                     <Pressable
+                        onPress={() => props.onEventPress(e)}
                         key={e.name}
                         style={({ pressed }) => [
                             styles.eventItem,

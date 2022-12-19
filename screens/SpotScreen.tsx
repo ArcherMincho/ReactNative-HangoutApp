@@ -1,5 +1,6 @@
-import { StyleSheet, ScrollView, View, Text, Image, Pressable } from 'react-native';
+import { StyleSheet, ScrollView, View, Text, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { StackActions } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import pxToDp from '../functions/pxToDp';
 
@@ -88,7 +89,8 @@ const SpotScreen = ({ navigation, route }) => {
                 left={
                     <BackBtn onPress={() => navigation.navigate('SpotHome')} />}
                 right={
-                    <SpotOpBtn onAdd={() => { }} />
+                    <SpotOpBtn onAdd={() => navigation.dispatch(StackActions.push("AddOnDate",
+                    { preScreen: "Spot", fri: [], location: spot.name }))} />
                 }
             />
 

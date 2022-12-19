@@ -1,4 +1,4 @@
-import { StyleSheet, ScrollView, TouchableOpacity, View, Text, Pressable } from 'react-native';
+import { StyleSheet, ScrollView, View, Text, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState, useEffect } from 'react';
 import { StackActions } from '@react-navigation/native';
@@ -21,9 +21,9 @@ const eventData = {
     '2022-12-14': [
         {
             name: "Egg & Milk",
-            time: '9:30 ~ 12:00',
+            time: '09:30 ~ 12:00',
             past: true,
-            people: ["Dennis Denito", "Jan Bjork"]
+            people: ["Dennis Denito", "Linnea Nilsson"]
         },
         {
             name: "Hing Wa",
@@ -35,9 +35,9 @@ const eventData = {
     '2022-12-17': [
         {
             name: "Egg & Milk",
-            time: '9:30 ~ 12:00',
+            time: '09:30 ~ 12:00',
             past: true,
-            people: ["Dennis Denito", "Jan Bjork"]
+            people: ["Dennis Denito", "Linnea Nilsson"]
         },
         {
             name: "Hing Wa",
@@ -49,13 +49,13 @@ const eventData = {
             name: "Sing Sing",
             time: '18:00 ~ 22:00',
             past: false,
-            people: ["Joakim Gustafsson", "Yining Li", "Tahiko Matsui"]
+            people: ["Joakim Gustafsson", "Yining Li", "Oscar Larsson"]
         },
     ],
     '2022-12-19': [
         {
             name: "Egg & Milk",
-            time: '9:30 ~ 12:00',
+            time: '09:30 ~ 12:00',
             past: false,
             people: ["Dennis Denito", "Jan Bjork"]
         },
@@ -67,42 +67,66 @@ const CalendarScreen = ({ navigation, route }) => {
     const [curYMD, setCurYMD] = useState("");
 
     // add a listener to navigation on route
-    // to get data for added plans and edited plans
     useEffect(() => {
         return navigation.addListener('focus', () => {
+            const isDelete = route.params?.del;
+            const isUpdate = route.params?.upd;
             const plan = route.params?.plan;
-            if (plan) {
-                const ymd = plan.YMD;
-                const name = plan.planInfo.name;
-                const planInfo = plan.planInfo;
 
-                if (eventData.hasOwnProperty(ymd)) {
-                    const date = eventData[ymd];
-                    let index = -1;
-                    for (let i = 0; i < date.length; i++) {
-                        if (date[i].name === name) {
-                            index = i;
-                            break;
-                        }
-                    }
-                    if (index > -1) {
-                        date[index] = planInfo;
-                    } else {
-                        date.push(planInfo);
-                    }
-                } else {
-                    eventData[ymd] = [planInfo];
-                }
-                setCurYMD(ymd);
-                // console.log(eventData[ymd]);
+            if (isDelete || isUpdate) {
+                // to delete an event when the user left it
+                // or to update an event
+                const ymd = route.params.YMD;
+                const n = route.params.name;
+                eventData[ymd] = eventData[ymd]?.filter(({ name }) => name !== n);
             }
-        });
+            if (!isDelete && (isUpdate || plan)) {
+                // to finish the left update
+                // pr to get data for added plans passed from AddPlanScreen
+                addPlan(plan);
+            }
+            setCurYMD(route.params?.YMD);
+            // console.log(eventData[route.params?.YMD]);
+        })
     }, [route]);
 
+    // add plan to Calendar
+    const addPlan = (plan) => {
+        const ymd = plan.YMD;
+        const name = plan.planInfo.name;
+        const planInfo = plan.planInfo;
+
+        if (eventData.hasOwnProperty(ymd)) {
+            const date = eventData[ymd];
+            const index = findEventIndex(ymd, name);
+            if (index > -1) {
+                date[index] = planInfo;
+            } else {
+                date.push(planInfo);
+            }
+        } else {
+            eventData[ymd] = [planInfo];
+        }
+        // console.log(eventData[ymd]);
+    }
+
+    // find an event with its name for a date with the given YMD
+    const findEventIndex = (ymd, name) => {
+        const date = eventData[ymd];
+        for (let i = 0; i < date.length; i++) {
+            if (date[i].name === name) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
     const handleAddingNavigation = () => {
+        const cur = curYMD;
         setCurYMD("");
         navigation.dispatch(StackActions.push("AddOnDate",
-            { preScreen: "Calendar", fri: [], YMD: curYMD }));
+            { preScreen: "Calendar", fri: [], YMD: cur }));
     }
 
     const countEvents = () => {
@@ -111,6 +135,12 @@ const CalendarScreen = ({ navigation, route }) => {
             obj[key] = eventData[key].length;
         }
         return obj;
+    }
+
+    const handleEventPress = (e) => {
+        const cur = curYMD;
+        setCurYMD("");
+        navigation.navigate("Edit", { YMD: cur, event: e });
     }
 
     return (
@@ -136,9 +166,12 @@ const CalendarScreen = ({ navigation, route }) => {
                 />
 
                 <ScrollView style={styles.eventContainer}>
-                    <EventList events={eventData[curYMD]} isPast={true} />
+                    <EventList events={eventData[curYMD]} isPast={true}
+                        onEventPress={handleEventPress}
+                    />
                     <EventList events={eventData[curYMD]} isPast={false}
-                        onPress={handleAddingNavigation}
+                        onAddPress={handleAddingNavigation}
+                        onEventPress={handleEventPress}
                     />
                 </ScrollView>
 

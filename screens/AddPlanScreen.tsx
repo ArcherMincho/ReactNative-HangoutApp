@@ -10,11 +10,9 @@ import TimeBox from '../components/plan/TimeBox';
 import InviteBox from '../components/plan/InviteBox';
 import MessageBox from '../components/plan/MessageBox';
 
-const Month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-
 const AddPlanScreen = ({ navigation, route }) => {
 
-    // if navigated from SpotScreen
+    // if navigated from SpotScreen or CalendarScreen
     const preScreen = route.params?.preScreen;
 
     // selected friends for filtering, passed from SelectScreen
@@ -34,8 +32,11 @@ const AddPlanScreen = ({ navigation, route }) => {
     useEffect(() => {
         return navigation.addListener('focus', () => {
             const ymd = route.params?.YMD;
+            const loc = route.params?.location;
             if (ymd)
                 setDate(ymd.slice(5));
+            if (loc)
+                setLocation(loc);
         });
     }, [route]);
 
@@ -62,7 +63,7 @@ const AddPlanScreen = ({ navigation, route }) => {
             const YMD = createYMD();
             const planInfo = createPlanInfo();
             refresh({});
-            navigation.navigate("Calendar", { plan: { YMD, planInfo } });
+            navigation.navigate("Calendar", { YMD, plan: { YMD, planInfo } });
         }
     }
 
@@ -100,7 +101,7 @@ const AddPlanScreen = ({ navigation, route }) => {
                     </View>
                 }
                 leftFixed={preScreen &&
-                    <BackBtn onPress={() => navigation.navigate(preScreen)}
+                    <BackBtn onPress={() => navigation.goBack()}
                     />
                 }
             />
