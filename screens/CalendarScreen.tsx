@@ -1,6 +1,7 @@
 import { StyleSheet, ScrollView, TouchableOpacity, View, Text, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState, useEffect } from 'react';
+import { StackActions } from '@react-navigation/native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import pxToDp from '../functions/pxToDp';
 
@@ -51,7 +52,7 @@ const eventData = {
             people: ["Joakim Gustafsson", "Yining Li", "Tahiko Matsui"]
         },
     ],
-    '2022-12-18': [
+    '2022-12-19': [
         {
             name: "Egg & Milk",
             time: '9:30 ~ 12:00',
@@ -61,9 +62,48 @@ const eventData = {
     ],
 };
 
-const CalendarScreen = ({ navigation }) => {
+const CalendarScreen = ({ navigation, route }) => {
 
     const [curYMD, setCurYMD] = useState("");
+
+    // add a listener to navigation on route
+    // to get data for added plans and edited plans
+    useEffect(() => {
+        return navigation.addListener('focus', () => {
+            const plan = route.params?.plan;
+            if (plan) {
+                const ymd = plan.YMD;
+                const name = plan.planInfo.name;
+                const planInfo = plan.planInfo;
+
+                if (eventData.hasOwnProperty(ymd)) {
+                    const date = eventData[ymd];
+                    let index = -1;
+                    for (let i = 0; i < date.length; i++) {
+                        if (date[i].name === name) {
+                            index = i;
+                            break;
+                        }
+                    }
+                    if (index > -1) {
+                        date[index] = planInfo;
+                    } else {
+                        date.push(planInfo);
+                    }
+                } else {
+                    eventData[ymd] = [planInfo];
+                }
+                setCurYMD(ymd);
+                // console.log(eventData[ymd]);
+            }
+        });
+    }, [route]);
+
+    const handleAddingNavigation = () => {
+        setCurYMD("");
+        navigation.dispatch(StackActions.push("AddOnDate",
+            { preScreen: "Calendar", fri: [], YMD: curYMD }));
+    }
 
     const countEvents = () => {
         const obj = {};
@@ -98,7 +138,7 @@ const CalendarScreen = ({ navigation }) => {
                 <ScrollView style={styles.eventContainer}>
                     <EventList events={eventData[curYMD]} isPast={true} />
                     <EventList events={eventData[curYMD]} isPast={false}
-                        onPress={() => navigation.navigate("Edit")}
+                        onPress={handleAddingNavigation}
                     />
                 </ScrollView>
 

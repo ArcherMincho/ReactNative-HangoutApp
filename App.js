@@ -90,6 +90,7 @@ const App = () => {
                     <Stack.Screen name="Post" component={PostScreen} />
                     <Stack.Screen name="Select" component={SelectScreen} />
                     <Stack.Screen name="Edit" component={EditPlanScreen} />
+                    <Stack.Screen name="AddOnDate" component={AddPlanScreen} />
                 </Stack.Navigator>
             </NavigationContainer>
         </SafeAreaProvider>

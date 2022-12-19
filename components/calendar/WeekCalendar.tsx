@@ -20,9 +20,7 @@ const WeekCalendar = props => {
     // init date
     useEffect(() => {
         const raw = new Date();
-        const date = raw.getDate();
         const day = raw.getDay();
-        setCurDate(date);
         getTimeList(-day); // get a date list of the current week
     }, []);
 
@@ -42,19 +40,25 @@ const WeekCalendar = props => {
 
     // get a list of date information of seven days of a week
     const getTimeList = (day) => {
+        const today = getTime(0);
         const list = [];
         for (let i = day; i <= day + 6; i++) {
             list.push(getTime(i));
         }
         setCurList(list);
         setCurMonth(list[0].month);
+        if (today.YMD < list[0].YMD || today.YMD > list.at(-1).YMD) {
+            setCurDate(list[0].date);
+            setCurYMD(list[0].YMD);
+        } else {
+            setCurDate(today.date);
+            setCurYMD(today.YMD);
+        }
     }
 
     const changeWeek = (weekNum) => {
         const raw = new Date();
         getTimeList(-(raw.getDay()) + (7 * weekNum));
-        setCurDate(0);
-        setCurYMD("");
     }
 
     const handlePrevClicked = () => {

@@ -5,14 +5,22 @@ import pxToDp from '../../functions/pxToDp';
 
 const TimeInput = props => {
     const { title, value, onChangeText } = props;
-    const [hour, setHour] = useState("");
-    const [min, setMin] = useState("");
-    let hourInput, minInput;
+    const [hour, setHour] = useState(value?.slice(0, 2) || "");
+    const [min, setMin] = useState(value?.slice(3) || "");
+
+    // Ref functions passed from AddPlanScreen
+    // so both hour and min input can be refreshed too
+    let { hourInput, minInput } = props;
+
+    // local ref to handle jumping from hour input to min input
+    let hourRef, minRef;
 
     // jump to the input for minutes when hour is filled
     useEffect(() => {
         if (hour.length === 2 && min.length === 0)
-            minInput.focus();
+            minRef.focus();
+        else if (hour.length === 2 && min.length === 2)
+            onChangeText(hour + ":" + min);
     }, [hour, min]);
 
     // add 0 to single-digit hour automatically when the hour input is blurred
@@ -26,17 +34,17 @@ const TimeInput = props => {
     // jump to the input for hour when deleted continuously
     const handleBackspaceDown = (e) => {
         if (min.length === 0 && e.nativeEvent.key === 'Backspace') {
-            hourInput.focus();
+            hourRef.focus();
         }
     }
 
     return (
         <View style={styles.container}>
             <TextInput
-                ref={r => { hourInput = r }}
+                ref={r => {hourInput && hourInput(r); hourRef = r;}}
                 style={styles.input}
                 onChangeText={setHour}
-                value={value ? value.slice(0, 2) : hour}
+                value={hour}
                 placeholder={"00"}
                 maxLength={2}
                 keyboardType="numeric"
@@ -44,10 +52,10 @@ const TimeInput = props => {
             />
             <Text style={styles.colon}>:</Text>
             <TextInput
-                ref={r => { minInput = r }}
+                ref={r => {minInput && minInput(r); minRef = r;}}
                 style={styles.input}
                 onChangeText={setMin}
-                value={value ? value.slice(2, 4) : min}
+                value={min}
                 placeholder={"00"}
                 maxLength={2}
                 keyboardType="numeric"

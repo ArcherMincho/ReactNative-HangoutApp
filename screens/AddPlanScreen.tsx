@@ -1,5 +1,5 @@
 import { StyleSheet, ScrollView, View, Text, Pressable } from 'react-native';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import pxToDp from '../functions/pxToDp';
 
@@ -10,7 +10,15 @@ import TimeBox from '../components/plan/TimeBox';
 import InviteBox from '../components/plan/InviteBox';
 import MessageBox from '../components/plan/MessageBox';
 
+const Month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+
 const AddPlanScreen = ({ navigation, route }) => {
+
+    // if navigated from SpotScreen
+    const preScreen = route.params?.preScreen;
+
+    // selected friends for filtering, passed from SelectScreen
+    const fri = route.params ? route.params.fri : [];
 
     const [location, setLocation] = useState("");
     const [date, setDate] = useState("");
@@ -18,11 +26,70 @@ const AddPlanScreen = ({ navigation, route }) => {
     const [end, setEnd] = useState("");
     const [message, setMessage] = useState("");
 
-    // if navigated from SpotScreen
-    const preScreen = route.params?.preScreen;
+    // time input refs
+    let sHour, sMin, eHour, eMin;
 
-    // selected friends for filtering, passed from SelectScreen
-    const fri = route.params ? route.params.fri : [];
+    // listen to changes of route with an navigation listener
+    // get plan date's YMD when passed from CalendarScreen
+    useEffect(() => {
+        return navigation.addListener('focus', () => {
+            const ymd = route.params?.YMD;
+            if (ymd)
+                setDate(ymd.slice(5));
+        });
+    }, [route]);
+
+    // to refresh this screen when any of the bottom buttons is clicked on
+    // called by this screen
+    const refresh = (obj) => {
+        const loc = obj.location || "";
+        const d = obj.date || "";
+        setLocation(loc);
+        setDate(d);
+        setStart("");
+        setEnd("");
+        setMessage("");
+        fri.length = 0;
+        sHour?.clear();
+        sMin?.clear();
+        eHour?.clear();
+        eMin?.clear();
+    }
+
+    // when the Add Locally button is clicked on
+    const handleAddLocally = () => {
+        if (location.length && date.length && start.length && end.length) {
+            const YMD = createYMD();
+            const planInfo = createPlanInfo();
+            refresh({});
+            navigation.navigate("Calendar", { plan: { YMD, planInfo } });
+        }
+    }
+
+    // when the Invite button is clicked on
+    const handleInvite = () => {
+        if (fri.length) {
+            handleAddLocally();
+        }
+    }
+
+    // to display the plan for the right date in Calendar
+    const createYMD = () => {
+        const year = route.params?.YMD?.slice(0, 4) || (new Date()).getFullYear();
+        return year + "-" + date.slice();
+    };
+
+    // to display the plan in Calendar
+    const createPlanInfo = () => {
+        const sTime = start || "00:00";
+        const eTime = end || "00:00";
+        return {
+            name: location.slice(),
+            time: sTime.slice() + " ~ " + eTime.slice(),
+            past: false,
+            people: fri.slice(),
+        };
+    };
 
     return (
         <SafeAreaView style={styles.container}>
@@ -49,19 +116,23 @@ const AddPlanScreen = ({ navigation, route }) => {
                         date={date} setDate={setDate}
                         start={start} setStart={setStart}
                         end={end} setEnd={setEnd}
+                        sHourRef={r => sHour = r} sMinRef={r => sMin = r}
+                        eHourRef={r => eHour = r} eMinRef={r => eMin = r}
                     />
                     <InviteBox
                         people={fri}
-                        onPress={() => navigation.navigate("Select", { preScreen: 'Add', fri })}
+                        onPress={() => navigation.navigate("Select", { preScreen: route.name, fri })}
                     />
                     <MessageBox value={message} onChangeText={setMessage} />
                     <View style={styles.btnContainer}>
                         <Pressable
+                            onPress={handleAddLocally}
                             style={({ pressed }) => [styles.btn, pressed && styles.onPressed]}
                         >
                             <Text style={styles.btnText}>Add Locally</Text>
                         </Pressable>
                         <Pressable
+                            onPress={handleInvite}
                             style={({ pressed }) => [
                                 styles.btn,
                                 { backgroundColor: '#F1B94C' },

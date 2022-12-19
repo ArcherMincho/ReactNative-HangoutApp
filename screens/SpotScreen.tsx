@@ -58,7 +58,7 @@ const color = '#F1B94C';
 
 const SpotScreen = ({ navigation, route }) => {
 
-    const spot = route.params.spot;
+    const spot = route.params?.spot;
 
     const handleStatusChange = (name, status) => {
         commentData.map(c => {

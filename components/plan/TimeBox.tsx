@@ -7,6 +7,7 @@ import TimeInput from './TimeInput';
 
 const TimeBox = props => {
     const { date, setDate, start, setStart, end, setEnd } = props;
+    let { sHourRef, sMinRef, eHourRef, eMinRef } = props;
 
     return (
         <View style={styles.timeContainer}>
@@ -32,11 +33,13 @@ const TimeBox = props => {
                     title="Start time"
                     value={start}
                     onChangeText={setStart}
+                    hourInput={sHourRef} minInput={sMinRef}
                 />
                 <TimeInput
                     title="End time"
                     value={end}
                     onChangeText={setEnd}
+                    hourInput={eHourRef} minInput={eMinRef}
                 />
             </View>
         </View>
