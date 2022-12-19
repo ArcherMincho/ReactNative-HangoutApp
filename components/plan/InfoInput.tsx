@@ -2,7 +2,7 @@ import { StyleSheet, View, TextInput, Text } from 'react-native';
 import { useState } from 'react';
 import pxToDp from '../../functions/pxToDp';
 
-const InputBox = props => {
+const InfoInput = props => {
     const { title, value, onChangeText } = props;
     const [focused, setFocused] = useState(false);
 
@@ -25,7 +25,7 @@ const InputBox = props => {
     )
 }
 
-export default InputBox;
+export default InfoInput;
 
 const styles = StyleSheet.create({
     container: {
@@ -64,5 +64,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: pxToDp(8),
         backgroundColor: 'white',
         fontSize: pxToDp(10),
+        fontWeight: '500',
     }
 })

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Entypo } from '@expo/vector-icons';
 import pxToDp from '../../functions/pxToDp';
 
-const TimeInputBox = props => {
+const TimeInput = props => {
     const { title, value, onChangeText } = props;
     const [hour, setHour] = useState("");
     const [min, setMin] = useState("");
@@ -70,7 +70,7 @@ const TimeInputBox = props => {
     )
 }
 
-export default TimeInputBox;
+export default TimeInput;
 
 const styles = StyleSheet.create({
     container: {
@@ -113,5 +113,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: pxToDp(8),
         backgroundColor: 'white',
         fontSize: pxToDp(10),
+        fontWeight: '500',
     }
 })

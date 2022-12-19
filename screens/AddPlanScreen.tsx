@@ -1,13 +1,13 @@
-import { StyleSheet, ScrollView, View, Text, Pressable } from 'react-native';
+import { StyleSheet, ScrollView, View, Text } from 'react-native';
 import { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { FontAwesome5 } from '@expo/vector-icons';
 import pxToDp from '../functions/pxToDp';
 
 import BackBtn from '../components/common/BackBtn';
 import HeaderBar from '../components/common/HeaderBar';
-import InputBox from '../components/plan/InputBox';
-import TimeInputBox from '../components/plan/TimeInputBox';
+import InfoInput from '../components/plan/InfoInput';
+import TimeBox from '../components/plan/TimeBox';
+import InviteBox from '../components/plan/InviteBox';
 
 const AddPlanScreen = ({ navigation, route }) => {
 
@@ -16,7 +16,11 @@ const AddPlanScreen = ({ navigation, route }) => {
     const [start, setStart] = useState("");
     const [end, setEnd] = useState("");
 
-    const preScreen = route.params?.preScreen; // if navigated from SpotScreen
+    // if navigated from SpotScreen
+    const preScreen = route.params?.preScreen;
+
+    // selected friends for filtering, passed from SelectScreen
+    const fri = route.params ? route.params.fri : [];
 
     return (
         <SafeAreaView style={styles.container}>
@@ -34,42 +38,19 @@ const AddPlanScreen = ({ navigation, route }) => {
 
             <View style={styles.contentContainer}>
                 <ScrollView style={styles.scrollContainer}>
-                    <InputBox
+                    <InfoInput
                         title="Location"
                         value={location}
                         onChangeText={setLocation}
                     />
-                    <View style={styles.timeContainer}>
-                        <Text style={styles.dateTitle}>Fill in a time</Text>
-                        <InputBox
-                            title="Date"
-                            value={date}
-                            onChangeText={setDate}
-                            btn={
-                                <Pressable>
-                                    {({ pressed }) => (
-                                        <FontAwesome5
-                                            name="calendar-alt"
-                                            size={pxToDp(23)}
-                                            color={pressed ? '#F1B94C' : 'black'}
-                                        />
-                                    )}
-                                </Pressable>
-                            }
-                        />
-                        <View style={styles.timeInput}>
-                            <TimeInputBox
-                                title="Start time"
-                                value={start}
-                                onChangeText={setStart}
-                            />
-                            <TimeInputBox
-                                title="End time"
-                                value={end}
-                                onChangeText={setEnd}
-                            />
-                        </View>
-                    </View>
+                    <TimeBox
+                        date={date} setDate={setDate}
+                        start={start} setStart={setStart}
+                        end={end} setEnd={setEnd}
+                    />
+                    <InviteBox
+                        people={fri}
+                        onPress={() => navigation.navigate("Select", { preScreen: 'Add', fri })} />
 
 
                 </ScrollView>
@@ -122,24 +103,5 @@ const styles = StyleSheet.create({
         paddingVertical: pxToDp(32),
         paddingHorizontal: pxToDp(15),
     },
-    timeContainer: {
-        marginVertical: pxToDp(30),
-        paddingHorizontal: pxToDp(24),
-        paddingVertical: pxToDp(16),
-        borderWidth: pxToDp(2),
-        borderRadius: pxToDp(10),
-    },
-    dateTitle: {
-        fontSize: pxToDp(12),
-        fontWeight: '800',
-        paddingBottom: pxToDp(5),
-    },
-    timeInput: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        alignSelf: 'center',
-        width: pxToDp(250),
-        marginTop: pxToDp(30),
-    }
+
 });
