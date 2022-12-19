@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
     },
     contentContainer: {
+        position: 'relative',
         height: pxToDp(638),
         width: pxToDp(328),
         borderRadius: pxToDp(10),

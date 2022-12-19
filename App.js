@@ -17,9 +17,7 @@ import PostScreen from './screens/PostScreen';
 import UserScreen from './screens/UserScreen';
 import CalendarScreen from './screens/CalendarScreen';
 
-import AgendaScreen from './screens/agendaScreen';
-import ExpandableCalendarScreen from './screens/ExpandableScreen';
-
+import AddPlanScreen from './screens/AddPlanScreen';
 
 // If want to let a few screens hold the same tab in the navigation bar
 // use the following stacked screen as a "screen" in the Tab Navigator
@@ -41,7 +39,7 @@ const Tab = createBottomTabNavigator();
 function BottomTabs() {
     return (
         <Tab.Navigator
-            initialRouteName="Calendar"
+            initialRouteName="Add"
             tabBar={props => <BottomTabBar {...props} />}
             screenOptions={{ headerShown: false }}
         // If to set up icons corresponding to specific tabs here:
@@ -71,7 +69,7 @@ function BottomTabs() {
         >
             <Tab.Screen name="Calendar" component={CalendarScreen} />
             <Tab.Screen name="SpotHome" component={HomeScreen} />
-            <Tab.Screen name="Add" component={ExpandableCalendarScreen} />
+            <Tab.Screen name="Add" component={AddPlanScreen} />
             <Tab.Screen name="User" component={UserScreen} />
         </Tab.Navigator>
     );
