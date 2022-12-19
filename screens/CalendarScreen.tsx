@@ -97,7 +97,9 @@ const CalendarScreen = ({ navigation }) => {
 
                 <ScrollView style={styles.eventContainer}>
                     <EventList events={eventData[curYMD]} isPast={true} />
-                    <EventList events={eventData[curYMD]} isPast={false} />
+                    <EventList events={eventData[curYMD]} isPast={false}
+                        onPress={() => navigation.navigate("Edit")}
+                    />
                 </ScrollView>
 
                 {/* for decoration */}

@@ -17,7 +17,7 @@ const EventList = props => {
             <View style={styles.header}>
                 <Text style={styles.headerText}>{title} Events</Text>
                 {!isPast && (
-                    <Pressable>
+                    <Pressable onPress={props.onPress}>
                         {({ pressed }) => {
                             return (
                                 pressed

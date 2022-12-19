@@ -16,8 +16,8 @@ import SpotScreen from './screens/SpotScreen';
 import PostScreen from './screens/PostScreen';
 import UserScreen from './screens/UserScreen';
 import CalendarScreen from './screens/CalendarScreen';
-
 import AddPlanScreen from './screens/AddPlanScreen';
+import EditPlanScreen from './screens/EditPlanScreen';
 
 // If want to let a few screens hold the same tab in the navigation bar
 // use the following stacked screen as a "screen" in the Tab Navigator
@@ -89,6 +89,7 @@ const App = () => {
                     <Stack.Screen name="Spot" component={SpotScreen} />
                     <Stack.Screen name="Post" component={PostScreen} />
                     <Stack.Screen name="Select" component={SelectScreen} />
+                    <Stack.Screen name="Edit" component={EditPlanScreen} />
                 </Stack.Navigator>
             </NavigationContainer>
         </SafeAreaProvider>
