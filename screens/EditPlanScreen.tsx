@@ -16,15 +16,13 @@ const EditPlanScreen = ({ navigation, route }) => {
     const event = route.params ? route.params.event : {};
     const YMD = route.params?.YMD;
 
-    // selected friends for filtering, passed from SelectScreen
-    const fri = route.params?.fri || event?.people || [];
+    // selected friends for filtering
+    const fri = route.params? route.params.fri : [];
 
     const [location, setLocation] = useState(event?.name || "");
     const [date, setDate] = useState(YMD?.slice(5) || "");
     const [start, setStart] = useState(event?.time?.slice(0, 5) || "");
     const [end, setEnd] = useState(event?.time?.slice(8, 13) || "");
-
-    console.log(start + end);
 
 
     // to display the plan for the right date in Calendar
@@ -40,7 +38,7 @@ const EditPlanScreen = ({ navigation, route }) => {
             name: location,
             time: sTime + " ~ " + eTime,
             past: false,
-            people: fri,
+            people: fri.slice(),
         };
     };
 
@@ -57,7 +55,7 @@ const EditPlanScreen = ({ navigation, route }) => {
             {
                 upd: true,
                 YMD,
-                name: event.name,
+                name: event?.name,
                 plan: { YMD: createYMD(), planInfo: createPlanInfo() }
             }
         );
@@ -115,8 +113,10 @@ const EditPlanScreen = ({ navigation, route }) => {
                         />
                     </View>
                     <InviteBox
-                        people={fri}
-                        onPress={() => navigation.navigate("Select", { preScreen: route.name, fri })}
+                        people={fri.slice()}
+                        onPress={() => navigation.navigate("Select",
+                            { preScreen: route.name, fri: fri.slice() })
+                        }
                     />
                     <Pressable
                         onPress={handleUpdate}

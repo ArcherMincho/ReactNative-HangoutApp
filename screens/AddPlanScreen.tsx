@@ -63,7 +63,7 @@ const AddPlanScreen = ({ navigation, route }) => {
             const YMD = createYMD();
             const planInfo = createPlanInfo();
             refresh({});
-            navigation.navigate("Calendar", { YMD, plan: { YMD, planInfo } });
+            navigation.navigate("Calendar", { add: true, YMD, plan: { YMD, planInfo } });
         }
     }
 

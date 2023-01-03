@@ -57,7 +57,7 @@ const eventData = {
             name: "Egg & Milk",
             time: '09:30 ~ 12:00',
             past: false,
-            people: ["Dennis Denito", "Jan Bjork"]
+            people: ["Dennis Denito", "Yining Li"]
         },
     ],
 };
@@ -71,21 +71,20 @@ const CalendarScreen = ({ navigation, route }) => {
         return navigation.addListener('focus', () => {
             const isDelete = route.params?.del;
             const isUpdate = route.params?.upd;
-            const plan = route.params?.plan;
+            const isAdd = route.params?.add;
 
             if (isDelete || isUpdate) {
                 // to delete an event when the user left it
-                // or to update an event
                 const ymd = route.params.YMD;
                 const n = route.params.name;
                 eventData[ymd] = eventData[ymd]?.filter(({ name }) => name !== n);
+                setCurYMD(route.params?.YMD);
             }
-            if (!isDelete && (isUpdate || plan)) {
+            if (isUpdate || isAdd) {
                 // to finish the left update
                 // pr to get data for added plans passed from AddPlanScreen
-                addPlan(plan);
+                addPlan(route.params?.plan);
             }
-            setCurYMD(route.params?.YMD);
             // console.log(eventData[route.params?.YMD]);
         })
     }, [route]);
@@ -107,6 +106,7 @@ const CalendarScreen = ({ navigation, route }) => {
         } else {
             eventData[ymd] = [planInfo];
         }
+        setCurYMD(ymd);
         // console.log(eventData[ymd]);
     }
 
@@ -121,26 +121,26 @@ const CalendarScreen = ({ navigation, route }) => {
         return -1;
     }
 
+    const countEvents = () => {
+        const obj = {};
+        for (const key in eventData) {
+            if(eventData[key])
+                obj[key] = eventData[key].length;
+        }
+        return obj;
+    }
 
     const handleAddingNavigation = () => {
-        const cur = curYMD;
+        const cur = curYMD.slice();
         setCurYMD("");
         navigation.dispatch(StackActions.push("AddOnDate",
             { preScreen: "Calendar", fri: [], YMD: cur }));
     }
 
-    const countEvents = () => {
-        const obj = {};
-        for (const key in eventData) {
-            obj[key] = eventData[key].length;
-        }
-        return obj;
-    }
-
     const handleEventPress = (e) => {
-        const cur = curYMD;
+        const cur = curYMD.slice();
         setCurYMD("");
-        navigation.navigate("Edit", { YMD: cur, event: e });
+        navigation.navigate("Edit", { fri: e.people, YMD: cur, event: e });
     }
 
     return (
