@@ -1,4 +1,4 @@
-import { StyleSheet, ScrollView, TouchableOpacity, View, Text, Image, Alert, Pressable } from 'react-native';
+import { StyleSheet, ScrollView, View, Pressable } from 'react-native';
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -53,35 +53,14 @@ const HomeScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            {/* <HeaderBar
-                left={
-                    <Dropdown
-                        data={locationData}
-                        setSelected={setLocation}
-                        search={false}
-                        defaultOption={locationData[1]}
-                    />}
-                right={
-                    <Pressable onPress={() => navigation.navigate('Spot')}>
-                        <FontAwesome name="comment-o" size={25} color={'black'} />
-                    </Pressable>
-                }
-            /> */}
 
             <FilterBar
-                friendData={friendData}
-                setFriends={setFriends}
-                filterData={filterData}
-                setFilters={setFilters}
+                friendData={friendData} setFriends={setFriends}
+                filterData={filterData} setFilters={setFilters}
                 defaultFilters={filters}
             />
 
             <ScrollView style={styles.postContainer}>
-                <SpotItem />
-                <SpotItem />
-                <SpotItem />
-                <SpotItem />
-                <SpotItem />
                 <SpotItem />
                 <SpotItem />
                 <SpotItem />

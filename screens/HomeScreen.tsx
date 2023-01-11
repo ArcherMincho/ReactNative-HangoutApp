@@ -1,3 +1,8 @@
+/**
+ * The home screen of the application
+ * A screen for Restaurant Discovery
+ */
+
 import { StyleSheet, ScrollView, View, Text, Pressable } from 'react-native';
 import { useState, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';

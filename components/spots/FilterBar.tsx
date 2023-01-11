@@ -33,7 +33,6 @@ const FilterBar = props => {
                             </Text>
                             <Entypo name="chevron-small-down" size={pxToDp(24)} color="black" />
                         </View>
-
                     )
                 }}
             </Pressable>
