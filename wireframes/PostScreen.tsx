@@ -1,7 +1,6 @@
-import { StyleSheet, ScrollView, TouchableOpacity, View, Text, Image, Alert, Pressable } from 'react-native';
-import { useState, useEffect, useLayoutEffect } from 'react';
+import { StyleSheet, View, Text, Pressable } from 'react-native';
+import { useState, useLayoutEffect } from 'react';
 
-import HeaderBar from '../components/common/HeaderBar';
 import SingleBtn from '../components/cancelled/SingleBtn';
 import SelectSpot from '../components/cancelled/SelectSpot';
 import StarRating from '../components/post/MyStarRating';
