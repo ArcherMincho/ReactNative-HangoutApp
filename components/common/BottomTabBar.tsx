@@ -3,13 +3,12 @@
  */
 
 import { StyleSheet, View, Pressable } from "react-native";
+import pxToDp from "../../functions/pxToDp";
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
-
-import pxToDp from "../../functions/pxToDp";
 
 library.add(far);
 library.add(fas);

@@ -14,13 +14,6 @@ import FilterBar from '../components/spots/FilterBar';
 import SpotItem from '../components/spots/SpotItem';
 import SearchBar from '../components/common/SearchBar';
 
-
-// const filterData = [
-//     { key: 'Nearest', value: 'Nearest' },
-//     { key: 'Oldest', value: 'Oldest' },
-//     { key: 'Hot', value: 'Hot' },
-// ]
-
 const SpotData = [
     {
         name: 'Big Bird',
@@ -78,29 +71,6 @@ const HomeScreen = ({ navigation, route }) => {
     const navigateTo = (spot) => {
         navigation.navigate("Spot", { spot });
     }
-
-
-    // useLayoutEffect(() => {
-    //     navigation.setOptions({
-    //         title: '',
-    //         headerLeft: () => (
-    //             <View style={styles.headerLocation}>
-    //             <Text style={styles.headerText}>Gothenburg</Text>
-    //             </View>
-    //             // <Dropdown
-    //             //     data={locationData}
-    //             //     setSelected={setLocation}
-    //             //     search={false}
-    //             //     defaultOption={locationData[1]}
-    //             // />
-    //         ),
-    //         headerRight: () => (
-    //             <Pressable style={{ marginHorizontal: '8%' }} onPress={() => navigation.navigate('Spot')}>
-    //                 <FontAwesome name="comment-o" size={25} color={'black'} />
-    //             </Pressable>
-    //         )
-    //     })
-    // }, [navigation]);
 
     return (
         <SafeAreaView style={styles.container}>
