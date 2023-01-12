@@ -37,15 +37,6 @@ const SpotScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-
-            {/* <HeaderBar
-                left={
-                    <BackBtn onPress={() => navigation.navigate('Home')} />}
-                right={
-                    <SpotOpBtn onAdd={() => navigation.navigate('Post')} />
-                }
-            /> */}
-
             <View style={styles.spot}>
                 <SpotItem myStyle={styles.removeShadow} />
             </View>

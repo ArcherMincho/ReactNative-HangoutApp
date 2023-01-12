@@ -1,4 +1,4 @@
-import { StyleSheet, ScrollView, TouchableOpacity, View, Text, Image, Alert, Pressable } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
 const SpotItem = props => {
     return (
