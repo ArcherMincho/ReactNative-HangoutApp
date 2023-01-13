@@ -23,7 +23,8 @@ const SelectScreen = ({ navigation, route }) => {
     const [searchText, setSearchText] = useState("");
     const [clicked, setClicked] = useState(false);
 
-    // selected friends preserved from last time, passed by HomeScreen
+    // selected friends preserved from last time, 
+    // passed by other screens such as HomeScreen
     const { preScreen, fri } = route.params;
     const [friends, setFriends] = useState(fri);
 
@@ -59,10 +60,8 @@ const SelectScreen = ({ navigation, route }) => {
 
             <ScrollView style={styles.contentContainer}>
                 <SearchBar
-                    searchText={searchText}
-                    setSearchText={setSearchText}
-                    clicked={clicked}
-                    setClicked={setClicked}
+                    searchText={searchText} setSearchText={setSearchText}
+                    clicked={clicked} setClicked={setClicked}
                 />
 
                 <View style={styles.selectContainer}>

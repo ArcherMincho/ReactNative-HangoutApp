@@ -38,7 +38,6 @@ const SpotInfo = props => {
             {spot.promoter1 &&
                 <Text style={[styles.mediumText, { color: fontColor }]}>
                     <Text>Recommended by </Text>
-
                     <Text style={{ fontWeight: '600' }}>{spot.promoter1}</Text>
                     <Text>, </Text>
                     {spot.promoter2 &&
