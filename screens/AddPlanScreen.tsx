@@ -32,11 +32,8 @@ const AddPlanScreen = ({ navigation, route }) => {
     useEffect(() => {
         return navigation.addListener('focus', () => {
             const ymd = route.params?.YMD;
-            const loc = route.params?.location;
             if (ymd)
                 setDate(ymd.slice(5));
-            if (loc)
-                setLocation(loc);
         });
     }, [route]);
 
