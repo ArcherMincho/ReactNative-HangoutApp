@@ -16,7 +16,7 @@ const EditPlanScreen = ({ navigation, route }) => {
     const event = route.params ? route.params.event : {};
     const YMD = route.params?.YMD;
 
-    // selected friends for filtering
+    // selected friends passed from SelectScreen
     const fri = route.params? route.params.fri : [];
 
     const [location, setLocation] = useState(event?.name || "");
@@ -25,12 +25,12 @@ const EditPlanScreen = ({ navigation, route }) => {
     const [end, setEnd] = useState(event?.time?.slice(8, 13) || "");
 
 
-    // to display the plan for the right date in Calendar
+    // convert the date into correct format for CalendarScreen
     const createYMD = () => {
         return YMD?.slice(0, 4) + "-" + date;
     };
 
-    // to display the plan in Calendar
+    // convert the plan into correct format for CalendarScreen
     const createPlanInfo = () => {
         const sTime = start || "00:00";
         const eTime = end || "00:00";
@@ -42,22 +42,21 @@ const EditPlanScreen = ({ navigation, route }) => {
         };
     };
 
-    // when the Leave button is clicked on
-    const handleLeave = () => {
-        navigation.navigate("Calendar",
-            { del: true, YMD, name: event?.name }
-        );
-    }
-
-    // when the Update button is clicked on
+    // for the Update button
     const handleUpdate = () => {
         navigation.navigate("Calendar",
             {
-                upd: true,
+                command: "update",
                 YMD,
                 name: event?.name,
                 plan: { YMD: createYMD(), planInfo: createPlanInfo() }
             }
+        );
+    }
+    // for the Leave button
+    const handleLeave = () => {
+        navigation.navigate("Calendar",
+            { command: "delete", YMD, name: event?.name }
         );
     }
 

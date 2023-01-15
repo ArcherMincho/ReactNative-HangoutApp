@@ -66,23 +66,19 @@ const CalendarScreen = ({ navigation, route }) => {
 
     const [curYMD, setCurYMD] = useState("");
 
-    // add a listener to navigation on route
+    // listen to changes in the router to 
+    // modify plans for different needs from different screens
     useEffect(() => {
         return navigation.addListener('focus', () => {
-            const isDelete = route.params?.del;
-            const isUpdate = route.params?.upd;
-            const isAdd = route.params?.add;
-
-            if (isDelete || isUpdate) {
-                // to delete an event when the user left it
+            const cad = route.params?.command;
+            if (cad === "update" || cad === "delete") {
+                // delete an event after the user left, cancelled, or updated it on EditPlanScreen
                 const ymd = route.params.YMD;
                 const n = route.params.name;
                 eventData[ymd] = eventData[ymd]?.filter(({ name }) => name !== n);
                 setCurYMD(route.params?.YMD);
             }
-            if (isUpdate || isAdd) {
-                // to finish the left update
-                // pr to get data for added plans passed from AddPlanScreen
+            if (cad === "update" || cad === "add") {  // add an edited or new event
                 addPlan(route.params?.plan);
             }
             // console.log(eventData[route.params?.YMD]);
@@ -121,6 +117,7 @@ const CalendarScreen = ({ navigation, route }) => {
         return -1;
     }
 
+    // calculate the number of dots beneath a date in the week calendar
     const countEvents = () => {
         const obj = {};
         for (const key in eventData) {
@@ -133,6 +130,10 @@ const CalendarScreen = ({ navigation, route }) => {
     const handleAddingNavigation = () => {
         const cur = curYMD.slice();
         setCurYMD("");
+        // go to a new AddPlanScreen registered in the stack navigator
+        // instead of in the tab navigator
+        // so that the AddPlanScreen opened with the bottom tab bar will not
+        // remember the date
         navigation.dispatch(StackActions.push("AddOnDate",
             { preScreen: "Calendar", fri: [], YMD: cur }));
     }
