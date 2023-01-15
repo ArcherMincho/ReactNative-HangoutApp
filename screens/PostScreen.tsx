@@ -14,14 +14,14 @@ import ImageBox from '../components/post/ImageBox';
 
 const PostScreen = ({ navigation, route }) => {
     // fri: selected friends to notify, passed from SelectScreen
-    // spotName: the spot to be posted about, not null when passed from SpotScreen
     const fri = route.params ? route.params["fri"] : [];
-    const friends = fri ? fri : [];
+    const friends = fri ? fri : []; // in case fri is undefined
 
+    // spotName: the spot to be posted about, not null when passed from SpotScreen
     const [searchText, setSearchText] = useState(route.params ? route.params.spotName : "");
-    const [clicked, setClicked] = useState(false);
-    const [star, setStar] = useState(0);
-    const [comment, setComment] = useState("");
+    const [clicked, setClicked] = useState(false); // for search bar
+    const [star, setStar] = useState(0); // for star rating
+    const [comment, setComment] = useState(""); // for comment input
 
     return (
         <SafeAreaView style={styles.container}>
@@ -29,7 +29,7 @@ const PostScreen = ({ navigation, route }) => {
                 left={
                     <BackBtn onPress={() => navigation.navigate('SpotHome')} />}
                 right={
-                    <PostBtn onPress={() => navigation.navigate('Post')} />
+                    <PostBtn />
                 }
             />
 

@@ -39,9 +39,8 @@ const SpotInfo = props => {
                 <Text style={[styles.mediumText, { color: fontColor }]}>
                     <Text>Recommended by </Text>
                     <Text style={{ fontWeight: '600' }}>{spot.promoter1}</Text>
-                    <Text>, </Text>
                     {spot.promoter2 &&
-                        <Text style={{ fontWeight: '600' }}>{spot.promoter2}</Text>
+                        <Text style={{ fontWeight: '600' }}>, {spot.promoter2}</Text>
                     }
                     <Text>, etc.</Text>
                 </Text>

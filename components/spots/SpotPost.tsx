@@ -10,7 +10,6 @@ import PostComment from './PostComment';
 
 const SpotPost = props => {
     const post = props.post;
-
     const [liked, setLiked] = useState(post.liked);
     const [saved, setSaved] = useState(post.saved);
     const [reply, setReply] = useState("");
@@ -28,6 +27,8 @@ const SpotPost = props => {
         else setSaved(!saved);
         props.onStatusChange(post.name, status);
     };
+    // takeaway: do not use set functions directly in a useEffect without conditioning
+    // that is, do not allow useEffect to be able to set a state every time it runs
 
     const handleSubmitEditing = () => {
         if (reply.length > 0)
@@ -35,7 +36,6 @@ const SpotPost = props => {
         setInputVisible(false);
         setReply("");
     };
-
 
     return (
         <View style={styles.container}>

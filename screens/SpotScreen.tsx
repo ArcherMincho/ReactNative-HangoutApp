@@ -63,11 +63,12 @@ const SpotScreen = ({ navigation, route }) => {
 
     const handleStatusChange = (name, status) => {
         commentData.map(c => {
-            if (c.name == name) {
-                c[status] = !c[status];
-
+            if (c.name == name) { // the name of the person the comment belongs to
+                c[status] = !c[status]; // status "loved" or "saved"
                 if (status === "liked") {
                     const [end] = c.likes.slice(-1);
+                    // add the current user to those who liked this comment if haven't liked
+                    // or delete the current users
                     end == "You" ? c.likes.pop() : c.likes.push("You");
                 }
             }

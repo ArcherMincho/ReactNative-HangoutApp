@@ -4,7 +4,7 @@ import pxToDp from '../../functions/pxToDp';
 
 const EventList = props => {
     const isPast = props.isPast;
-    const title = isPast ? "Past" : "Incoming";
+    const title = isPast ? "Past" : "Upcoming";
     const bgColor = isPast ? '#75CDF1' : '#F1B94C';
     const events = !props.events ? [] : props.events.filter(e => {
         return e.past === isPast;
