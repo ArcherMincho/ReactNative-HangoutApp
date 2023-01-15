@@ -53,7 +53,7 @@ const SelectScreen = ({ navigation, route }) => {
                 }
                 leftFixed={
                     <BackBtn onPress={() => navigation.navigate(preScreen,
-                        { fri: fri })} // return the original, passed-in selected friends
+                        { fri, preScreen: "Select" })} // return the original, passed-in selected friends
                     />
                 }
             />
@@ -82,7 +82,7 @@ const SelectScreen = ({ navigation, route }) => {
                 <Pressable
                     style={styles.bottomBtn}
                     onPress={() => navigation.navigate(preScreen,
-                        { fri: friends.slice() } // return current selected friends
+                        { fri: friends.slice(), preScreen: "Select" } // return current selected friends
                     )}
                 >
                     <Text style={styles.bottomText}>Done</Text>

@@ -38,12 +38,9 @@ const AddPlanScreen = ({ navigation, route }) => {
     }, [route]);
 
     // to refresh this screen when any of the bottom buttons is clicked on
-    // called by this screen
-    const refresh = (obj) => {
-        const loc = obj.location || "";
-        const d = obj.date || "";
-        setLocation(loc);
-        setDate(d);
+    const refresh = () => {
+        setLocation("");
+        setDate("");
         setStart("");
         setEnd("");
         setMessage("");
@@ -59,7 +56,7 @@ const AddPlanScreen = ({ navigation, route }) => {
         if (location.length && date.length && start.length && end.length) {
             const YMD = createYMD();
             const planInfo = createPlanInfo();
-            refresh({});
+            refresh();
             navigation.navigate("Calendar", { command: "add", YMD, plan: { YMD, planInfo } });
         }
     }
