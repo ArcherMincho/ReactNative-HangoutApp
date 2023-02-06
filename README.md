@@ -19,6 +19,7 @@ As an individual project, the app is developed from scratch for people to share,
 <img src="pictures/ModularArchitecture.png" alt="ModularArchitecture" width="90%"/>
 
 ## Implemented Interfaces
+The UIs of the app's interfaces were designed by Yiqian Wu (yiqian@chalmers.se).
 ### Restaurant Discovery & Restaurant's Home Page
 <img src="pictures/Discovery.png" alt="Discovery" width="30%"/> <img src="pictures/Homepage.png" alt="Homepage" width="30%"/> <img src="pictures/Homepage-commented.png" alt="Homepage-commented" width="30%"/>
 
