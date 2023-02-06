@@ -11,6 +11,7 @@ As an individual project, the app is developed from scratch for people to share,
 
 ## Modular System Architecture
 <img width="1000" alt="ModularArchitecture" src="https://user-images.githubusercontent.com/43512045/217008826-4640a44c-ac74-41fb-b649-29a6e37f74be.png">
+<img src="pictures/ModularArchitecture.png" alt="ModularArchitecture" width="50%"/>
 
 ## Final Result
 ### Home Screen - Restaurant Discovery
@@ -21,7 +22,7 @@ As an individual project, the app is developed from scratch for people to share,
 ![Homepage-commented](https://user-images.githubusercontent.com/43512045/217010322-19289629-07ad-487f-afeb-26387870a8a1.png)
 
 
-<!-- <img src="images/cover.png" alt="Cover" width="50%"/> -->
+
 
 ### Setup
 **First install Node.js LTS:**
