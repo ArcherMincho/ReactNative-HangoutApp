@@ -21,6 +21,7 @@ As an individual project, the app is developed from scratch for people to share,
 ![Homepage-commented](https://user-images.githubusercontent.com/43512045/217010322-19289629-07ad-487f-afeb-26387870a8a1.png)
 
 
+<!-- <img src="images/cover.png" alt="Cover" width="50%"/> -->
 
 ### Setup
 **First install Node.js LTS:**
