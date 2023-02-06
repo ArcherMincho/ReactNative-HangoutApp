@@ -1,16 +1,21 @@
 # Code Name: Hangout App "AtPlan"
 
-progress: ongoing
-
 ## Description
-As an individual project, develop an app for people to share, plan, and manage hangouts by offering a community for in-circle hangout sharing and a calendar.
+As an individual project, the app is developed from scratch for people to share, plan, and manage hangouts.
+
+## Used Design Patterns
+- Layout Components
+- Higher-Order Components
+- Hook Components
+- Functional Components
+
+## Modular System Architecture
+<img width="1545" alt="ModularArchitecture" src="https://user-images.githubusercontent.com/43512045/217008826-4640a44c-ac74-41fb-b649-29a6e37f74be.png">
+
+## Final Result
 
 
-## Tech
-- React Native
-- Hooks
-
-## Getting started
+### Setup
 **First install Node.js LTS:**
 
 	- https://nodejs.org/en/
