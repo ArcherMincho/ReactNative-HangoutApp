@@ -14,16 +14,23 @@ As an individual project, the app is developed from scratch for people to share,
 
 ## Final Result
 ### Home Screen - Restaurant Discovery
-<img src="pictures/Discovery.png" alt="Discovery" width="50%"/>
-
-![Discovery](https://user-images.githubusercontent.com/43512045/217010002-32cc6dde-c4f2-4ec2-bb6b-f07eab4f7551.png)
+<img src="pictures/Discovery.png" alt="Discovery" width="30%"/>
 
 ### Home Page for a Specific Restaurant
-![Homepage](https://user-images.githubusercontent.com/43512045/217010310-d57bbf37-a5c0-4bd3-8118-ecaca50a7fcb.png)
-![Homepage-commented](https://user-images.githubusercontent.com/43512045/217010322-19289629-07ad-487f-afeb-26387870a8a1.png)
+<img src="pictures/Homepage.png" alt="Homepage" width="30%"/>
+<img src="pictures/Homepage-commented.png" alt="Homepage-commented" width="30%"/>
 
+### Creating a Post on a Restaurant
+<img src="pictures/PostCreation.png" alt="PostCreation" width="30%"/>
 
+### Calendar
+<img src="pictures/Calendar-past.png" alt="Calendar" width="30%"/>
 
+### Plan Editing
+<img src="pictures/PlanEditing-finished.png" alt="PlanEditing" width="30%"/>
+
+### Selecting Friends
+<img src="pictures/SelectScreen.png" alt="Selection" width="30%"/>
 
 ### Setup
 **First install Node.js LTS:**
