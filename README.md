@@ -12,20 +12,17 @@ As an individual project, the app is developed from scratch for people to share,
 ## Modular System Architecture
 <img src="pictures/ModularArchitecture.png" alt="ModularArchitecture" width="90%"/>
 
-## Final Result
+## Implemented Interfaces
 ### Restaurant Discovery & Restaurant's Home Page
 <img src="pictures/Discovery.png" alt="Discovery" width="30%"/> <img src="pictures/Homepage.png" alt="Homepage" width="30%"/> <img src="pictures/Homepage-commented.png" alt="Homepage-commented" width="30%"/>
 
 
-### Creating a Post on a Restaurant
-<img src="pictures/PostCreation-finished.png" alt="PostCreation" width="30%"/>
+### Creating a Post on a Restaurant & Selecting Friends
+<img src="pictures/PostCreation-finished.png" alt="PostCreation" width="30%"/> <img src="pictures/SelectScreen.png" alt="Selection" width="30%"/>
 
 ### Calendar, Plan Creation, and Plan Editing
 <img src="pictures/Calendar-past.png" alt="Calendar" width="30%"/> <img src="pictures/PlanCreation-finished.png" alt="PlanCreation" width="30%"/> <img src="pictures/PlanEditing-finished.png" alt="PlanEditing" width="30%"/>
 
-
-### Selecting Friends
-<img src="pictures/SelectScreen.png" alt="Selection" width="30%"/>
 
 ### Setup
 **First install Node.js LTS:**
