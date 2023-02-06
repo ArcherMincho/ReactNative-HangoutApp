@@ -3,7 +3,13 @@
 ## Description
 As an individual project, the app is developed from scratch for people to share, plan, and manage hangouts.
 
-## Used Design Patterns
+#### Tech
+- React Native
+- TypeScript
+- Expo
+- Hooks
+
+#### Used Design Patterns
 - Layout Components
 - Higher-Order Components
 - Hook Components
