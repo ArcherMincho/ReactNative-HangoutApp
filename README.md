@@ -19,7 +19,8 @@ As an individual project, the app is developed from scratch for people to share,
 <img src="pictures/ModularArchitecture.png" alt="ModularArchitecture" width="90%"/>
 
 ## Implemented Interfaces
-The app's interfaces are related to the 7 system modules as shown above.
+The app's interfaces are related to the 7 system modules, as shown in the picture above.
+
 The UIs of these interfaces were designed by my friend, Yiqian Wu (yiqian@chalmers.se).
 
 ### Restaurant Discovery & Restaurant's Home Page
