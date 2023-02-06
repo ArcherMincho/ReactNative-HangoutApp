@@ -23,14 +23,14 @@ The app's interfaces are related to the **7 system modules**, as illustrated in 
 
 The UIs of these interfaces were designed by my friend, Yiqian Wu (yiqian@chalmers.se).
 
-### (a) Restaurant Discovery, (b) Restaurant Homepage
+### (a) Restaurant Discovery, and (b) Restaurant Homepage
 <img src="pictures/Discovery.png" alt="Discovery" width="30%"/> <img src="pictures/Homepage.png" alt="Homepage" width="30%"/> <img src="pictures/Homepage-commented.png" alt="Homepage-commented" width="30%"/>
 
 
-### (c) Post Creation, (d) Friend Selection
+### (c) Post Creation, and (d) Friend Selection
 <img src="pictures/PostCreation-finished.png" alt="PostCreation" width="30%"/> <img src="pictures/SelectScreen.png" alt="Selection" width="30%"/>
 
-### (e) Calendar, (f) Plan Creation, (g) Plan Editing
+### (e) Calendar, (f) Plan Creation, and (g) Plan Editing
 <img src="pictures/Calendar-past.png" alt="Calendar" width="30%"/> <img src="pictures/PlanCreation-finished.png" alt="PlanCreation" width="30%"/> <img src="pictures/PlanEditing-finished.png" alt="PlanEditing" width="30%"/>
 
 
