@@ -1,4 +1,4 @@
-# Code Name: Hangout App
+# Code Name: Hangout App "AtPlan"
 
 progress: ongoing
 
