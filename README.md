@@ -10,11 +10,12 @@ As an individual project, the app is developed from scratch for people to share,
 - Functional Components
 
 ## Modular System Architecture
-<img width="1000" alt="ModularArchitecture" src="https://user-images.githubusercontent.com/43512045/217008826-4640a44c-ac74-41fb-b649-29a6e37f74be.png">
-<img src="pictures/ModularArchitecture.png" alt="ModularArchitecture" width="100%"/>
+<img src="pictures/ModularArchitecture.png" alt="ModularArchitecture" width="90%"/>
 
 ## Final Result
 ### Home Screen - Restaurant Discovery
+<img src="pictures/Discovery.png" alt="Discovery" width="90%"/>
+
 ![Discovery](https://user-images.githubusercontent.com/43512045/217010002-32cc6dde-c4f2-4ec2-bb6b-f07eab4f7551.png)
 
 ### Home Page for a Specific Restaurant
