@@ -11,7 +11,7 @@ As an individual project, the app is developed from scratch for people to share,
 
 ## Modular System Architecture
 <img width="1000" alt="ModularArchitecture" src="https://user-images.githubusercontent.com/43512045/217008826-4640a44c-ac74-41fb-b649-29a6e37f74be.png">
-<img src="pictures/ModularArchitecture.png" alt="ModularArchitecture" width="50%"/>
+<img src="pictures/ModularArchitecture.png" alt="ModularArchitecture" width="100%"/>
 
 ## Final Result
 ### Home Screen - Restaurant Discovery
