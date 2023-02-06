@@ -14,7 +14,7 @@ As an individual project, the app is developed from scratch for people to share,
 
 ## Final Result
 ### Home Screen - Restaurant Discovery
-<img src="pictures/Discovery.png" alt="Discovery" width="90%"/>
+<img src="pictures/Discovery.png" alt="Discovery" width="50%"/>
 
 ![Discovery](https://user-images.githubusercontent.com/43512045/217010002-32cc6dde-c4f2-4ec2-bb6b-f07eab4f7551.png)
 
