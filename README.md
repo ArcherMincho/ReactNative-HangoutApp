@@ -21,7 +21,7 @@ As an individual project, the app is developed from scratch for people to share,
 ## Implemented Interfaces
 The app's interfaces are related to the **7 system modules**, as illustrated in the picture above, and labeled with **(a) to (g)** in the following sections.
 
-The UIs of these interfaces were designed by my friend, Yiqian Wu (yiqian@chalmers.se).
+_Thanks for the help from my friend Yiqian (yiqian@chalmers.se) who designed the UIs of the app._
 
 ### (a) Restaurant Discovery, and (b) Restaurant Homepage
 <img src="pictures/Discovery.png" alt="Discovery" width="30%"/> <img src="pictures/Homepage.png" alt="Homepage" width="30%"/> <img src="pictures/Homepage-commented.png" alt="Homepage-commented" width="30%"/>
